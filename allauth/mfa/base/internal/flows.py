@@ -48,11 +48,4 @@ def post_authentication(
 
 
 def check_rate_limit(user) -> Callable[[], None]:
-    key = f"mfa-auth-user-{str(user.pk)}"
-    if not ratelimit.consume(
-        context.request,
-        action="login_failed",
-        key=key,
-    ):
-        raise get_account_adapter().validation_error("too_many_login_attempts")
-    return lambda: ratelimit.clear(context.request, action="login_failed", key=key)
+    pass

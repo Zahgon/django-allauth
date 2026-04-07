@@ -38,4 +38,4 @@ class OpenAPIJSONView(View):
 @method_decorator(login_not_required, name="dispatch")
 class OpenAPIHTMLView(TemplateView):
     def get_template_names(self) -> list[str]:
-        return [app_settings.SPECIFICATION_TEMPLATE_NAME]
+        pass

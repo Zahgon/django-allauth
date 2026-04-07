@@ -21,9 +21,7 @@ def app_view(
         @login_not_required
         @wraps(view_func)
         def _wrapper_view(request, *args, **kwargs):
-            mark_request_as_headless(request, Client.APP)
-            with authkit.authentication_context(request):
-                return view_func(request, *args, **kwargs)
+            pass
 
         return _wrapper_view
 
@@ -40,11 +38,7 @@ def browser_view(
         @login_not_required
         @wraps(view_func)
         def _wrapper_view(request, *args, **kwargs):
-            mark_request_as_headless(request, Client.BROWSER)
-            # Needed -- so that the CSRF token is set in the response for the
-            # frontend to pick up.
-            get_token(request)
-            return view_func(request, *args, **kwargs)
+            pass
 
         return _wrapper_view
 

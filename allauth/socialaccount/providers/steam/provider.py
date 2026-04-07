@@ -30,14 +30,10 @@ class SteamAccount(OpenIDAccount):
         return self.account.extra_data.get("personaname", dflt)
 
     def get_profile_url(self):
-        return self.account.extra_data.get("profileurl")
+        pass
 
     def get_avatar_url(self):
-        return (
-            self.account.extra_data.get("avatarfull")
-            or self.account.extra_data.get("avatarmedium")
-            or self.account.extra_data.get("avatar")
-        )
+        pass
 
 
 def extract_steam_id(url):

@@ -15,19 +15,19 @@ class OktaOAuth2Adapter(OAuth2Adapter):
 
     @property
     def access_token_url(self):
-        return f"https://{self.okta_base_url}/oauth2/v1/token"
+        pass
 
     @property
     def authorize_url(self):
-        return f"https://{self.okta_base_url}/oauth2/v1/authorize"
+        pass
 
     @property
     def userinfo_url(self):
-        return f"https://{self.okta_base_url}/oauth2/v1/userinfo"
+        pass
 
     @property
     def access_token_method(self):
-        return "POST"
+        pass
 
     def complete_login(self, request, app, token, **kwargs):
         """

@@ -43,7 +43,7 @@ def lookup(client_id: str, code: str) -> dict | None:
 
 
 def invalidate(client_id: str, code: str) -> None:
-    cache.delete(cache_key(client_id, code))
+    pass
 
 
 def validate(client_id: str, code: str, request) -> bool:

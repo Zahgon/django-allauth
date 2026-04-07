@@ -92,9 +92,7 @@ class EmailAddressManager(models.Manager["EmailAddress"]):
     def get_users_for(self, email):
         # this is a list rather than a generator because we probably want to
         # do a len() on it right away
-        return [
-            address.user for address in self.filter(verified=True, email=email.lower())
-        ]
+        pass
 
     def fill_cache_for_user(self, user, addresses) -> None:
         """
@@ -130,7 +128,7 @@ class EmailAddressManager(models.Manager["EmailAddress"]):
 
 class EmailConfirmationManager(models.Manager):
     def all_expired(self):
-        return self.filter(self.expired_q())
+        pass
 
     def all_valid(self):
         return self.exclude(self.expired_q()).filter(email_address__verified=False)
@@ -142,4 +140,4 @@ class EmailConfirmationManager(models.Manager):
         return Q(sent__lt=sent_threshold)
 
     def delete_expired_confirmations(self) -> None:
-        self.all_expired().delete()
+        pass

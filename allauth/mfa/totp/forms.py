@@ -20,11 +20,7 @@ class ActivateTOTPForm(forms.Form):
         self.secret = auth.get_totp_secret(regenerate=not self.is_bound)
 
     def clean_code(self) -> str:
-        validate_can_add_authenticator(self.user)
-        code = self.cleaned_data["code"]
-        if not auth.validate_totp_code(self.secret, code):
-            raise get_adapter().validation_error("incorrect_code")
-        return code
+        pass
 
 
 class DeactivateTOTPForm(forms.Form):

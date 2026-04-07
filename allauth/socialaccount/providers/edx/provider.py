@@ -5,8 +5,7 @@ from allauth.socialaccount.providers.oauth2.provider import OAuth2Provider
 
 class EdxAccount(ProviderAccount):
     def get_profile_url(self):
-        if self.account.extra_data["profile_image"]["has_image"]:
-            return self.account.extra_data["image_url_full"]
+        pass
 
 
 class EdxProvider(OAuth2Provider):

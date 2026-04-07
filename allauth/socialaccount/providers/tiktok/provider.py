@@ -6,16 +6,16 @@ from allauth.socialaccount.providers.tiktok.views import TikTokOAuth2Adapter
 
 class TikTokAccount(ProviderAccount):
     def get_username(self):
-        return self.account.extra_data.get("username")
+        pass
 
     def get_display_name(self):
-        return self.account.extra_data.get("display_name")
+        pass
 
     def get_profile_url(self):
-        return self.account.extra_data.get("profile_deep_link")
+        pass
 
     def get_avatar_url(self):
-        return self.account.extra_data.get("avatar_url")
+        pass
 
 
 class TikTokProvider(OAuth2Provider):

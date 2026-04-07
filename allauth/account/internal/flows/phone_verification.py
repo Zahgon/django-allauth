@@ -35,7 +35,7 @@ class PhoneVerificationProcess(AbstractCodeVerificationProcess):
 
     @property
     def phone(self) -> str:
-        return self.state["phone"]
+        pass
 
     def send(self, skip_enumeration_sms: bool = False) -> None:
         ratelimit.consume(
@@ -131,22 +131,14 @@ class PhoneVerificationStageProcess(PhoneVerificationProcess):
 
     @property
     def can_resend(self) -> bool:
-        return not self.is_resend_quota_reached(
-            app_settings.PHONE_VERIFICATION_MAX_RESEND_COUNT
-        )
+        pass
 
     @property
     def can_change(self) -> bool:
         # TODO: Prevent enumeration flaw: if we don't have a user, we cannot
         # change the phone. To fix this, we would need to serialize
         # the user and perform an on-the-fly signup here.
-        return (
-            not self.is_change_quota_reached(
-                app_settings.PHONE_VERIFICATION_MAX_CHANGE_COUNT
-            )
-            and bool(self.user)
-            and not did_user_login(self.user)
-        )
+        pass
 
 
 class ChangePhoneVerificationProcess(PhoneVerificationProcess):

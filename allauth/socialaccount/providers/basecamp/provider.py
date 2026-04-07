@@ -5,7 +5,7 @@ from allauth.socialaccount.providers.oauth2.provider import OAuth2Provider
 
 class BasecampAccount(ProviderAccount):
     def get_avatar_url(self):
-        return None
+        pass
 
     def get_user_data(self):
         return self.account.extra_data.get("identity", {})

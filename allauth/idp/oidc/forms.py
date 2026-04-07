@@ -60,17 +60,7 @@ class ConfirmCodeForm(forms.Form):
         super().__init__(*args, **kwargs)
 
     def clean_code(self) -> str:
-        code = self.cleaned_data["code"]
-        if not ratelimit.consume(
-            context.request,
-            action="device_user_code",
-            config=app_settings.RATE_LIMITS,
-            limit_get=True,
-        ):
-            raise get_account_adapter().validation_error("rate_limited")
-
-        self.device_code, self.client = device_codes.validate_user_code(code)
-        return code
+        pass
 
 
 class DeviceAuthorizationForm(forms.Form):
@@ -134,11 +124,7 @@ class RPInitiatedLogoutForm(forms.Form):
     ui_locales = forms.CharField(required=False, widget=forms.HiddenInput)
 
     def clean_id_token_hint(self):
-        value = self.cleaned_data["id_token_hint"]
-        if not value:
-            return None
-        payload = decode_jwt_token(value, verify_exp=False, verify_iss=True)
-        return payload
+        pass
 
     def clean(self) -> dict[str, Any] | None:
         cleaned_data = super().clean()

@@ -16,11 +16,7 @@ class WeixinOAuth2Adapter(OAuth2Adapter):
 
     @property
     def authorize_url(self):
-        settings = self.get_provider().get_settings()
-        url = settings.get(
-            "AUTHORIZE_URL", "https://open.weixin.qq.com/connect/qrconnect"
-        )
-        return url
+        pass
 
     def complete_login(self, request, app, token, **kwargs):
         openid = kwargs.get("response", {}).get("openid")

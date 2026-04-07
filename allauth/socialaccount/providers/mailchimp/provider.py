@@ -10,11 +10,11 @@ class MailChimpAccount(ProviderAccount):
 
     def get_profile_url(self):
         """Return base profile url."""
-        return self.account.extra_data["api_endpoint"]
+        pass
 
     def get_avatar_url(self):
         """Return avatar url."""
-        return self.account.extra_data["login"]["avatar"]
+        pass
 
     def to_str(self):
         dflt = super().to_str()

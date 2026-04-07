@@ -6,7 +6,7 @@ from allauth.socialaccount.providers.oauth2.provider import OAuth2Provider
 
 class NaverAccount(ProviderAccount):
     def get_avatar_url(self):
-        return self.account.extra_data.get("profile_image")
+        pass
 
 
 class NaverProvider(OAuth2Provider):

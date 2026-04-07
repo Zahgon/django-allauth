@@ -5,10 +5,10 @@ from allauth.socialaccount.providers.oauth2.provider import OAuth2Provider
 
 class DoximityAccount(ProviderAccount):
     def get_profile_url(self):
-        return None
+        pass
 
     def get_avatar_url(self):
-        return self.account.extra_data.get("profile_photo")
+        pass
 
 
 class DoximityProvider(OAuth2Provider):

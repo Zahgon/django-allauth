@@ -12,144 +12,116 @@ class AppSettings:
 
     @property
     def ADAPTER(self) -> str:
-        return self._setting("ADAPTER", "allauth.mfa.adapter.DefaultMFAAdapter")
+        pass
 
     @property
     def ALLOW_UNVERIFIED_EMAIL(self) -> bool:
-        return self._setting("ALLOW_UNVERIFIED_EMAIL", False)
+        pass
 
     @property
     def FORMS(self) -> dict:
-        return self._setting("FORMS", {})
+        pass
 
     @property
     def RECOVERY_CODE_COUNT(self) -> int:
         """
         The number of recovery codes.
         """
-        return self._setting("RECOVERY_CODE_COUNT", 10)
+        pass
 
     @property
     def RECOVERY_CODE_DIGITS(self) -> int:
         """
         The number of digits of each recovery code.
         """
-        return self._setting("RECOVERY_CODE_DIGITS", 8)
+        pass
 
     @property
     def TOTP_PERIOD(self) -> int:
         """
         The period that a TOTP code will be valid for, in seconds.
         """
-        return self._setting("TOTP_PERIOD", 30)
+        pass
 
     @property
     def TOTP_DIGITS(self) -> int:
         """
         The number of digits for TOTP codes
         """
-        return self._setting("TOTP_DIGITS", 6)
+        pass
 
     @property
     def TOTP_ISSUER(self) -> str:
         """
         The issuer.
         """
-        return self._setting("TOTP_ISSUER", "")
+        pass
 
     @property
     def TOTP_INSECURE_BYPASS_CODE(self):
         """
         Don't use this on production. Useful for development & E2E tests only.
         """
-        from django.conf import settings
-        from django.core.exceptions import ImproperlyConfigured
-
-        code = self._setting("TOTP_INSECURE_BYPASS_CODE", None)
-        if (not settings.DEBUG) and code:
-            raise ImproperlyConfigured(
-                "MFA_TOTP_INSECURE_BYPASS_CODE is for testing purposes only"
-            )
-        return code
+        pass
 
     @property
     def TOTP_TOLERANCE(self) -> int:
         """
         The number of time steps in the past or future to allow. Lower values are more secure, but more likely to fail due to clock drift.
         """
-        return self._setting("TOTP_TOLERANCE", 0)
+        pass
 
     @property
     def SUPPORTED_TYPES(self) -> list[str]:
-        dflt = ["recovery_codes", "totp"]
-        return self._setting("SUPPORTED_TYPES", dflt)
+        pass
 
     @property
     def WEBAUTHN_ALLOW_INSECURE_ORIGIN(self) -> bool:
-        return self._setting("WEBAUTHN_ALLOW_INSECURE_ORIGIN", False)
+        pass
 
     @property
     def PASSKEY_LOGIN_ENABLED(self) -> bool:
-        return "webauthn" in self.SUPPORTED_TYPES and self._setting(
-            "PASSKEY_LOGIN_ENABLED", False
-        )
+        pass
 
     @property
     def PASSKEY_SIGNUP_ENABLED(self) -> bool:
-        return "webauthn" in self.SUPPORTED_TYPES and self._setting(
-            "PASSKEY_SIGNUP_ENABLED", False
-        )
+        pass
 
     @property
     def TRUST_ENABLED(self) -> bool:
-        return self._setting("TRUST_ENABLED", False)
+        pass
 
     @property
     def _TRUST_STAGE_ENABLED(self) -> bool:
-        from allauth.account import app_settings as account_settings
-
-        return self.TRUST_ENABLED or account_settings.LOGIN_BY_CODE_TRUST_ENABLED
+        pass
 
     @property
     def TRUST_COOKIE_AGE(self) -> timedelta:
-        age = self._setting("TRUST_COOKIE_AGE", timedelta(days=14))
-        if not isinstance(age, timedelta):
-            age = timedelta(seconds=age)
-        return age
+        pass
 
     @property
     def TRUST_COOKIE_NAME(self) -> str:
-        return self._setting("TRUST_COOKIE_NAME", "mfa_trusted")
+        pass
 
     @property
     def TRUST_COOKIE_DOMAIN(self) -> str | None:
-        from django.conf import settings
-
-        return self._setting("TRUST_COOKIE_DOMAIN", settings.SESSION_COOKIE_DOMAIN)
+        pass
 
     @property
     def TRUST_COOKIE_HTTPONLY(self) -> bool:
-        from django.conf import settings
-
-        return self._setting("TRUST_COOKIE_HTTPONLY", settings.SESSION_COOKIE_HTTPONLY)
+        pass
 
     @property
     def TRUST_COOKIE_PATH(self) -> str:
-        from django.conf import settings
-
-        return self._setting("TRUST_COOKIE_PATH", settings.SESSION_COOKIE_PATH)
+        pass
 
     @property
     def TRUST_COOKIE_SAMESITE(self) -> str:
-        from django.conf import settings
-
-        return self._setting("TRUST_COOKIE_SAMESITE", settings.SESSION_COOKIE_SAMESITE)
+        pass
 
     @property
     def TRUST_COOKIE_SECURE(self) -> str | None:
-        from django.conf import settings
-
-        return self._setting("TRUST_COOKIE_SECURE", settings.SESSION_COOKIE_SECURE)
+        pass
 
 
 _app_settings = AppSettings("MFA_")

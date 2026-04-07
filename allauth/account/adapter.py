@@ -100,7 +100,7 @@ class DefaultAccountAdapter(BaseAdapter):
     }
 
     def stash_verified_email(self, request, email):
-        request.session["account_verified_email"] = email
+        pass
 
     def unstash_verified_email(self, request):
         ret = request.session.get("account_verified_email")
@@ -579,21 +579,7 @@ class DefaultAccountAdapter(BaseAdapter):
         user.save()
 
     def get_user_search_fields(self):
-        ret = []
-        User = get_user_model()
-        candidates = [
-            app_settings.USER_MODEL_USERNAME_FIELD,
-            "first_name",
-            "last_name",
-            "email",
-        ]
-        for candidate in candidates:
-            try:
-                User._meta.get_field(candidate)
-                ret.append(candidate)
-            except FieldDoesNotExist:
-                pass
-        return ret
+        pass
 
     def is_safe_url(self, url):
         from django.utils.http import url_has_allowed_host_and_scheme
@@ -949,17 +935,7 @@ class DefaultAccountAdapter(BaseAdapter):
         """
         Checks whether the phone number adapter is fully implemented.
         """
-        methods = (
-            "send_verification_code_sms",
-            "set_phone",
-            "get_phone",
-            "set_phone_verified",
-            "get_user_by_phone",
-        )
-        return all(
-            getattr(self.__class__, method) != getattr(DefaultAccountAdapter, method)
-            for method in methods
-        )
+        pass
 
     def set_phone(self, user, phone: str, verified: bool):
         """

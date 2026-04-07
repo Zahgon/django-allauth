@@ -5,10 +5,10 @@ from allauth.socialaccount.providers.oauth2.provider import OAuth2Provider
 
 class AngelListAccount(ProviderAccount):
     def get_profile_url(self):
-        return self.account.extra_data.get("angellist_url")
+        pass
 
     def get_avatar_url(self):
-        return self.account.extra_data.get("image")
+        pass
 
 
 class AngelListProvider(OAuth2Provider):

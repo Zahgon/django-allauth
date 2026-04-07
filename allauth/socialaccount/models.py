@@ -135,10 +135,10 @@ class SocialAccount(models.Model):
         return socialaccount_user_display(self)
 
     def get_profile_url(self):
-        return self.get_provider_account().get_profile_url()
+        pass
 
     def get_avatar_url(self):
-        return self.get_provider_account().get_avatar_url()
+        pass
 
     def get_provider(self, request=None):
         provider = getattr(self, "_provider", None)
@@ -253,7 +253,7 @@ class SocialLogin:
 
     @property
     def is_headless(self) -> bool:
-        return bool(self.state.get("headless"))
+        pass
 
     def serialize(self) -> dict[str, Any]:
         serialize_instance = get_adapter().serialize_instance
@@ -328,9 +328,7 @@ class SocialLogin:
         """When `False`, this social login represents a temporary account, not
         yet backed by a database record.
         """
-        if self.user.pk is None:
-            return False
-        return get_user_model().objects.filter(pk=self.user.pk).exists()
+        pass
 
     def lookup(self) -> None:
         """Look up the existing local user account to which this social login

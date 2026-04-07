@@ -5,10 +5,10 @@ from allauth.socialaccount.providers.trello.views import TrelloOAuthAdapter
 
 class TrelloAccount(ProviderAccount):
     def get_profile_url(self):
-        return None
+        pass
 
     def get_avatar_url(self):
-        return None
+        pass
 
 
 class TrelloProvider(OAuthProvider):

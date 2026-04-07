@@ -7,21 +7,10 @@ from allauth.socialaccount.providers.odnoklassniki.views import (
 
 class OdnoklassnikiAccount(ProviderAccount):
     def get_profile_url(self):
-        return f"https://ok.ru/profile/{self.account.extra_data['uid']}"
+        pass
 
     def get_avatar_url(self):
-        ret = None
-        pic_big_url = self.account.extra_data.get("pic1024x768")
-        pic_medium_url = self.account.extra_data.get("pic640x480")
-        pic_small_url = self.account.extra_data.get("pic190x190")
-        if pic_big_url:
-            return pic_big_url
-        elif pic_medium_url:
-            return pic_medium_url
-        elif pic_small_url:
-            return pic_small_url
-        else:
-            return ret
+        pass
 
 
 class OdnoklassnikiProvider(OAuth2Provider):

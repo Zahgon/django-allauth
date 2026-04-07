@@ -42,8 +42,7 @@ class OpenIDProvider(Provider):
         return url
 
     def get_brands(self):
-        default_servers = []
-        return self.get_settings().get("SERVERS", default_servers)
+        pass
 
     def get_server_settings(self, endpoint):
         servers = self.get_settings().get("SERVERS", [])

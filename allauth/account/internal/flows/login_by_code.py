@@ -150,9 +150,7 @@ class LoginCodeVerificationProcess(AbstractCodeVerificationProcess):
 
     @property
     def can_resend(self) -> bool:
-        return not self.is_resend_quota_reached(
-            app_settings.LOGIN_BY_CODE_MAX_RESEND_COUNT
-        )
+        pass
 
     def resend(self) -> None:
         self.generate_code()

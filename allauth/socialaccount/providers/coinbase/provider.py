@@ -5,7 +5,7 @@ from allauth.socialaccount.providers.oauth2.provider import OAuth2Provider
 
 class CoinbaseAccount(ProviderAccount):
     def get_avatar_url(self):
-        return None
+        pass
 
 
 class CoinbaseProvider(OAuth2Provider):

@@ -5,7 +5,7 @@ from allauth.socialaccount.providers.oauth2.provider import OAuth2Provider
 
 class LemonLDAPAccount(ProviderAccount):
     def get_avatar_url(self):
-        return self.account.extra_data.get("picture")
+        pass
 
 
 class LemonLDAPProvider(OAuth2Provider):

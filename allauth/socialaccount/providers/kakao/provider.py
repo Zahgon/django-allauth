@@ -7,16 +7,14 @@ from allauth.socialaccount.providers.oauth2.provider import OAuth2Provider
 class KakaoAccount(ProviderAccount):
     @property
     def properties(self):
-        return self.account.extra_data.get("properties", {})
+        pass
 
     @property
     def profile(self):
-        return self.account.extra_data.get("kakao_account", {}).get("profile", {})
+        pass
 
     def get_avatar_url(self):
-        return self.profile.get(
-            "profile_image_url", self.properties.get("profile_image")
-        )
+        pass
 
     def get_user_data(self):
         return self.account.extra_data.get("kakao_account")

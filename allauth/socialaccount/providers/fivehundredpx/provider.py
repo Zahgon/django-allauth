@@ -7,10 +7,10 @@ from allauth.socialaccount.providers.oauth.provider import OAuthProvider
 
 class FiveHundredPxAccount(ProviderAccount):
     def get_profile_url(self):
-        return f"https://500px.com/{self.account.extra_data.get('username')}"
+        pass
 
     def get_avatar_url(self):
-        return self.account.extra_data.get("userpic_url")
+        pass
 
 
 class FiveHundredPxProvider(OAuthProvider):

@@ -5,17 +5,14 @@ from allauth.socialaccount.providers.pinterest.views import PinterestOAuth2Adapt
 
 class PinterestAccount(ProviderAccount):
     def get_username(self):
-        return self.account.extra_data.get("username")
+        pass
 
     def get_profile_url(self):
         # v5 extra_data not same as v1
-        username = self.get_username()
-        if username:
-            return f"https://www.pinterest.com/{username}/"
-        return self.account.extra_data.get("url")
+        pass
 
     def get_avatar_url(self):
-        return self.account.extra_data.get("profile_image")
+        pass
 
 
 class PinterestProvider(OAuth2Provider):
@@ -26,7 +23,7 @@ class PinterestProvider(OAuth2Provider):
 
     @property
     def api_version(self):
-        return self.get_settings().get("API_VERSION", "v1")
+        pass
 
     def get_default_scope(self):
         # See: https://developers.pinterest.com/docs/api/overview/#scopes

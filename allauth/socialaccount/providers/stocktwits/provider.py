@@ -5,7 +5,7 @@ from allauth.socialaccount.providers.stocktwits.views import StocktwitsOAuth2Ada
 
 class StocktwitsAccount(ProviderAccount):
     def get_avatar_url(self):
-        return self.account.extra_data.get("user", {}).get("avatar_url_ssl")
+        pass
 
     def get_user_data(self):
         return self.account.extra_data.get("user", {})

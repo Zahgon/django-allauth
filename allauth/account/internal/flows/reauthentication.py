@@ -35,12 +35,7 @@ def stash_and_reauthenticate(
 
 
 def suspend_request(request: HttpRequest, redirect_to: str) -> HttpResponseRedirect:
-    path = request.get_full_path()
-    if request.method == "POST":
-        request.session[STATE_SESSION_KEY] = {"request": serialize_request(request)}
-    return HttpResponseRedirect(
-        f"{redirect_to}?{urlencode({REDIRECT_FIELD_NAME: path})}"
-    )
+    pass
 
 
 def resume_request(request: HttpRequest) -> HttpResponseRedirect | None:

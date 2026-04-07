@@ -7,4 +7,4 @@ class HeadlessConfig(AppConfig):
     verbose_name = _("Headless")
 
     def ready(self):
-        from allauth.headless import checks  # noqa
+        pass

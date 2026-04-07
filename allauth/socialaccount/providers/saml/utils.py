@@ -154,8 +154,7 @@ def build_saml_config(request, provider_config, org) -> dict:
 
 
 def encode_relay_state(state) -> str:
-    params = {"state": state}
-    return urlencode(params)
+    pass
 
 
 def decode_relay_state(relay_state):

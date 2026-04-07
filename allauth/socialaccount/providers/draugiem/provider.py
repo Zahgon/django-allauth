@@ -6,21 +6,7 @@ from allauth.socialaccount.providers.base import Provider, ProviderAccount
 
 class DraugiemAccount(ProviderAccount):
     def get_avatar_url(self):
-        ret = None
-        pic_small_url = self.account.extra_data.get("img")
-        pic_icon_url = self.account.extra_data.get("imgi")
-        pic_medium_url = self.account.extra_data.get("imgm")
-        pic_large_url = self.account.extra_data.get("imgl")
-        if pic_large_url:
-            return pic_large_url
-        elif pic_medium_url:
-            return pic_medium_url
-        elif pic_icon_url:
-            return pic_icon_url
-        elif pic_small_url:
-            return pic_small_url
-        else:
-            return ret
+        pass
 
 
 class DraugiemProvider(Provider):

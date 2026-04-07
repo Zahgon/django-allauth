@@ -5,10 +5,10 @@ from allauth.socialaccount.providers.oauth2.provider import OAuth2Provider
 
 class FoursquareAccount(ProviderAccount):
     def get_profile_url(self):
-        return f"https://foursquare.com/user/{self.account.extra_data.get('id')}"
+        pass
 
     def get_avatar_url(self):
-        return self.account.extra_data.get("photo")
+        pass
 
     def to_str(self):
         dflt = super().to_str()

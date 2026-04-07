@@ -5,10 +5,10 @@ from allauth.socialaccount.providers.oauth2.provider import OAuth2Provider
 
 class DoubanAccount(ProviderAccount):
     def get_profile_url(self):
-        return self.account.extra_data.get("alt")
+        pass
 
     def get_avatar_url(self):
-        return self.account.extra_data.get("large_avatar")
+        pass
 
 
 class DoubanProvider(OAuth2Provider):

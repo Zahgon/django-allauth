@@ -11,10 +11,10 @@ from allauth.socialaccount.providers.oauth2.provider import OAuth2Provider
 
 class AmazonCognitoAccount(ProviderAccount):
     def get_avatar_url(self):
-        return self.account.extra_data.get("picture")
+        pass
 
     def get_profile_url(self):
-        return self.account.extra_data.get("profile")
+        pass
 
 
 class AmazonCognitoProvider(OAuth2Provider):

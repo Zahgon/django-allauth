@@ -11,25 +11,18 @@ class PaypalOAuth2Adapter(OAuth2Adapter):
 
     @property
     def authorize_url(self):
-        path = "webapps/auth/protocol/openidconnect/v1/authorize"
-        return f"https://www.{self._get_endpoint()}/{path}"
+        pass
 
     @property
     def access_token_url(self):
-        path = "v1/identity/openidconnect/tokenservice"
-        return f"https://api.{self._get_endpoint()}/{path}"
+        pass
 
     @property
     def profile_url(self):
-        path = "v1/identity/openidconnect/userinfo"
-        return f"https://api.{self._get_endpoint()}/{path}"
+        pass
 
     def _get_endpoint(self):
-        settings = self.get_provider().get_settings()
-        if settings.get("MODE") == "live":
-            return "paypal.com"
-        else:
-            return "sandbox.paypal.com"
+        pass
 
     def complete_login(self, request, app, token, **kwargs):
         with get_adapter().get_requests_session() as sess:

@@ -6,10 +6,10 @@ from allauth.socialaccount.providers.zoom.views import ZoomOAuth2Adapter
 
 class ZoomAccount(ProviderAccount):
     def get_profile_url(self):
-        return self.account.extra_data.get("vanity_url")
+        pass
 
     def get_avatar_url(self):
-        return self.account.extra_data.get("pic_url")
+        pass
 
 
 class ZoomProvider(OAuth2Provider):

@@ -11,7 +11,7 @@ class EventbriteAccount(ProviderAccount):
 
     def get_avatar_url(self):
         """Return avatar url."""
-        return self.account.extra_data["image_id"]
+        pass
 
     def to_str(self):
         emails = self.account.extra_data.get("emails")

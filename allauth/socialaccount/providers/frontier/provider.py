@@ -8,13 +8,10 @@ from allauth.socialaccount.providers.oauth2.provider import OAuth2Provider
 
 class FrontierAccount(ProviderAccount):
     def get_profile_url(self):
-        return None
+        pass
 
     def get_avatar_url(self):
-        email_hash = hashlib.sha256(
-            self.account.extra_data.get("email").lower().encode("utf-8")
-        ).hexdigest()
-        return f"https://www.gravatar.com/avatar/{email_hash}?d=mp"
+        pass
 
 
 class FrontierProvider(OAuth2Provider):

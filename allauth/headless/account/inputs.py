@@ -95,27 +95,7 @@ class VerifyEmailInput(inputs.Input):
         super().__init__(*args, **kwargs)
 
     def clean_key(self):
-        key = self.cleaned_data["key"]
-        if self.process:
-            if not compare_user_code(actual=key, expected=self.process.code):
-                raise get_account_adapter().validation_error("incorrect_code")
-            valid = True
-            email_address = self.process.email_address
-        else:
-            model = get_emailconfirmation_model()
-            verification = model.from_key(key)
-            valid = verification and not verification.key_expired()
-            if not valid:
-                raise get_account_adapter().validation_error(
-                    "incorrect_code"
-                    if account_settings.EMAIL_VERIFICATION_BY_CODE_ENABLED
-                    else "invalid_or_expired_key"
-                )
-            email_address = verification.email_address
-            self.verification = verification
-        if valid and not email_address.can_set_verified():
-            raise get_account_adapter().validation_error("email_taken")
-        return key
+        pass
 
 
 class RequestPasswordResetInput(ResetPasswordForm, inputs.Input):
@@ -131,25 +111,13 @@ class ResetPasswordKeyInput(inputs.Input):
         super().__init__(*args, **kwargs)
 
     def clean_key(self):
-        if account_settings.PASSWORD_RESET_BY_CODE_ENABLED:
-            return self._clean_key_code()
-        else:
-            return self._clean_key_link()
+        pass
 
     def _clean_key_code(self):
-        key = self.cleaned_data["key"]
-        if not compare_user_code(actual=key, expected=self.code):
-            raise get_account_adapter().validation_error("incorrect_code")
-        return key
+        pass
 
     def _clean_key_link(self):
-        key = self.cleaned_data["key"]
-        uidb36, _, subkey = key.partition("-")
-        token_form = UserTokenForm(data={"uidb36": uidb36, "key": subkey})
-        if not token_form.is_valid():
-            raise get_account_adapter().validation_error("invalid_password_reset")
-        self.user = token_form.reset_user
-        return key
+        pass
 
 
 class ResetPasswordInput(ResetPasswordKeyInput):
@@ -176,16 +144,10 @@ class ChangePasswordInput(inputs.Input):
         self.fields["current_password"].required = self.user.has_usable_password()
 
     def clean_current_password(self):
-        current_password = self.cleaned_data["current_password"]
-        if current_password:
-            if not self.user.check_password(current_password):
-                raise get_account_adapter().validation_error("enter_current_password")
-        return current_password
+        pass
 
     def clean_new_password(self):
-        new_password = self.cleaned_data["new_password"]
-        adapter = get_account_adapter()
-        return adapter.clean_password(new_password, user=self.user)
+        pass
 
 
 class AddEmailInput(AddEmailForm, inputs.Input):

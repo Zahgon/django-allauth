@@ -28,21 +28,4 @@ def validate_can_add_authenticator(user: AbstractBaseUser) -> None:
 
 
 def redirect_if_add_not_allowed(function=None):
-    def decorator(view_func):
-        @wraps(view_func)
-        def _wrapper_view(request, *args, **kwargs):
-            if request.user.is_authenticated:  # allow for this to go before reauth
-                try:
-                    validate_can_add_authenticator(request.user)
-                except ValidationError as e:
-                    for message in e.messages:
-                        adapter = get_account_adapter()
-                        adapter.add_message(request, messages.ERROR, message=message)
-                    return HttpResponseRedirect(reverse("mfa_index"))
-            return view_func(request, *args, **kwargs)
-
-        return _wrapper_view
-
-    if function:
-        return decorator(function)
-    return decorator
+    pass

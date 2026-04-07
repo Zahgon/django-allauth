@@ -8,10 +8,7 @@ class DataportenAccount(ProviderAccount):
         """
         Returns a valid URL to an 128x128 .png photo of the user
         """
-        # Documentation for user profile photos can be found here:
-        # https://docs.dataporten.no/docs/oauth-authentication/
-        photo = self.account.extra_data["profilephoto"]
-        return f"https://api.dataporten.no/userinfo/v1/user/media/{photo}"
+        pass
 
 
 class DataportenProvider(OAuth2Provider):

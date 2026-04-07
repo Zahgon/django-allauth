@@ -13,8 +13,4 @@ def __getattr__(name):
 
 @contextmanager
 def request_context(request):
-    token = _request_var.set(request)
-    try:
-        yield
-    finally:
-        _request_var.reset(token)
+    pass

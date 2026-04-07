@@ -45,10 +45,8 @@ def _strip_punctuation(code: str) -> str:
     other punctuation that it added for readability (making the inclusion of
     such punctuation by the user optional).
     """
-    return code.translate(str.maketrans("", "", string.punctuation + string.whitespace))
+    pass
 
 
 def compare_user_code(*, actual: str, expected: str) -> bool:
-    actual = _strip_punctuation(actual).lower()
-    expected = _strip_punctuation(expected).lower()
-    return bool(expected) and actual == expected
+    pass

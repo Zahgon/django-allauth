@@ -5,7 +5,7 @@ from allauth.socialaccount.providers.robinhood.views import RobinhoodOAuth2Adapt
 
 class RobinhoodAccount(ProviderAccount):
     def get_avatar_url(self):
-        return None
+        pass
 
 
 class RobinhoodProvider(OAuth2Provider):

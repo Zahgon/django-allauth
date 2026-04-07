@@ -9,10 +9,7 @@ from allauth.idp.oidc.models import Client
 
 
 def is_loopback(parsed_uri: ParseResult) -> bool:
-    return parsed_uri.scheme == "http" and parsed_uri.hostname in (
-        "127.0.0.1",
-        "::1",
-    )
+    pass
 
 
 def _validate_uri_wildcard_format(uri: str, allow_uri_wildcards: bool) -> None:
@@ -41,87 +38,31 @@ def _validate_uri_wildcard_format(uri: str, allow_uri_wildcards: bool) -> None:
 
 
 def _wildcard_to_regex(wildcard: str) -> Pattern:
-    pattern = re.escape(wildcard).replace(r"\*", r"[^.]+")
-    return re.compile(f"^{pattern}$")
+    pass
 
 
 def _is_scheme_hostname_allowed(
     parsed_uri: ParseResult, parsed_allowed_uri: ParseResult, allow_uri_wildcards: bool
 ) -> bool:
-    if parsed_allowed_uri.scheme != parsed_uri.scheme:
-        return False
-
-    if (
-        allow_uri_wildcards
-        and parsed_allowed_uri.hostname
-        and "*" in parsed_allowed_uri.hostname
-    ):
-        allowed_hostname_pattern = _wildcard_to_regex(parsed_allowed_uri.hostname)
-
-        if not allowed_hostname_pattern.match(parsed_uri.hostname):
-            return False
-    else:
-        if parsed_allowed_uri.hostname != parsed_uri.hostname:
-            return False
-
-    return True
+    pass
 
 
 def is_parsed_redirect_uri_allowed(
     parsed_uri: ParseResult, allowed_uri: str, allow_uri_wildcards: bool
 ) -> bool:
-    parsed_allowed_uri = urlparse(allowed_uri)
-
-    if not _is_scheme_hostname_allowed(
-        parsed_uri, parsed_allowed_uri, allow_uri_wildcards
-    ):
-        return False
-
-    if parsed_allowed_uri.path != parsed_uri.path:
-        return False
-
-    if not is_loopback(parsed_allowed_uri):
-        if parsed_allowed_uri.port != parsed_uri.port:
-            return False
-
-    if not set(parse_qsl(parsed_allowed_uri.query)).issubset(
-        set(parse_qsl(parsed_uri.query))
-    ):
-        return False
-
-    return True
+    pass
 
 
 def is_redirect_uri_allowed(
     uri: str, allowed_uris: list[str], allow_uri_wildcards: bool
 ) -> bool:
-    parsed_uri = urlparse(uri)
-    return any(
-        is_parsed_redirect_uri_allowed(parsed_uri, allowed_uri, allow_uri_wildcards)
-        for allowed_uri in allowed_uris
-    )
+    pass
 
 
 def is_origin_allowed(
     origin: str, allowed_origins: list[str], allow_uri_wildcards: bool
 ) -> bool:
-    parsed_origin = urlparse(origin)
-
-    for allowed_origin in allowed_origins:
-        parsed_allowed_origin = urlparse(allowed_origin)
-        if (
-            not _is_scheme_hostname_allowed(
-                parsed_origin, parsed_allowed_origin, allow_uri_wildcards
-            )
-            or parsed_origin.username != parsed_allowed_origin.username
-            or parsed_origin.password != parsed_allowed_origin.password
-            or parsed_origin.port != parsed_allowed_origin.port
-        ):
-            continue
-        else:
-            return True
-
-    return False
+    pass
 
 
 def get_used_schemes(client: Client) -> set[str]:

@@ -5,7 +5,7 @@ from allauth.socialaccount.providers.weixin.views import WeixinOAuth2Adapter
 
 class WeixinAccount(ProviderAccount):
     def get_avatar_url(self):
-        return self.account.extra_data.get("headimgurl")
+        pass
 
     def to_str(self):
         return self.account.extra_data.get("nickname", super().to_str())

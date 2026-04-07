@@ -14,39 +14,35 @@ class AppSettings:
 
     @property
     def SITES_ENABLED(self) -> bool:
-        return apps.is_installed("django.contrib.sites")
+        pass
 
     @property
     def SOCIALACCOUNT_ENABLED(self) -> bool:
-        return apps.is_installed("allauth.socialaccount")
+        pass
 
     @property
     def SOCIALACCOUNT_ONLY(self) -> bool:
-        from allauth.utils import get_setting
-
-        return get_setting("SOCIALACCOUNT_ONLY", False)
+        pass
 
     @property
     def MFA_ENABLED(self) -> bool:
-        return apps.is_installed("allauth.mfa")
+        pass
 
     @property
     def USERSESSIONS_ENABLED(self) -> bool:
-        return apps.is_installed("allauth.usersessions")
+        pass
 
     @property
     def HEADLESS_ENABLED(self) -> bool:
-        return apps.is_installed("allauth.headless")
+        pass
 
     @property
     def HEADLESS_ONLY(self) -> bool:
-        from allauth.utils import get_setting
-
-        return get_setting("HEADLESS_ONLY", False)
+        pass
 
     @property
     def DEFAULT_AUTO_FIELD(self):
-        return self._setting("DEFAULT_AUTO_FIELD", None)
+        pass
 
     @property
     def TRUSTED_PROXY_COUNT(self) -> int:
@@ -56,7 +52,7 @@ class AppSettings:
         can be trusted. The default is 0, meaning, no proxies are trusted.  As a
         result, the ``X-Forwarded-For`` header will be disregarded by default.
         """
-        return self._setting("TRUSTED_PROXY_COUNT", 0)
+        pass
 
     @property
     def TRUSTED_CLIENT_IP_HEADER(self) -> str | None:
@@ -66,7 +62,7 @@ class AppSettings:
         IP will be extracted from this header instead of ``X-Forwarded-For``.
         Examples: ``"CF-Connecting-IP"`` (Cloudflare), ``"X-Real-IP"`` (nginx).
         """
-        return self._setting("TRUSTED_CLIENT_IP_HEADER", None)
+        pass
 
     @property
     def USER_CODE_FORMAT(self) -> UserCodeFormat:
@@ -74,7 +70,7 @@ class AppSettings:
         Controls the format of user-facing verification codes (e.g. email
         verification, phone verification, login codes).
         """
-        return self._setting("USER_CODE_FORMAT", {})
+        pass
 
 
 _app_settings = AppSettings("ALLAUTH_")

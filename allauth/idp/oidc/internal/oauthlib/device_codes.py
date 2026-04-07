@@ -61,20 +61,7 @@ def lookup_client(client_id: str) -> Client | None:
 
 
 def validate_user_code(code: str) -> tuple[str, Client]:
-    data: dict | None = None
-    device_code = cache.get(cache_user_code_key(code))
-    if device_code:
-        data = cache.get(cache_device_code_key(device_code))
-    if (
-        not data
-        or data["granted"] is not None
-        or not compare_user_code(actual=code, expected=data["device"]["user_code"])
-    ):
-        raise get_account_adapter().validation_error("incorrect_code")
-    client = lookup_client(data["client_id"])
-    if not client:
-        raise get_account_adapter().validation_error("incorrect_code")
-    return device_code, client
+    pass
 
 
 def confirm_or_deny_device_code(user, device_code: str, confirm: bool) -> bool:

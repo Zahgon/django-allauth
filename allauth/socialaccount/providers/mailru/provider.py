@@ -5,19 +5,10 @@ from allauth.socialaccount.providers.oauth2.provider import OAuth2Provider
 
 class MailRuAccount(ProviderAccount):
     def get_profile_url(self):
-        return self.account.extra_data.get("link")
+        pass
 
     def get_avatar_url(self):
-        ret = None
-        if self.account.extra_data.get("has_pic"):
-            pic_big_url = self.account.extra_data.get("pic_big")
-            pic_small_url = self.account.extra_data.get("pic_small")
-            if pic_big_url:
-                return pic_big_url
-            elif pic_small_url:
-                return pic_small_url
-        else:
-            return ret
+        pass
 
 
 class MailRuProvider(OAuth2Provider):

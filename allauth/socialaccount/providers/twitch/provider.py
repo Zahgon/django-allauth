@@ -5,13 +5,12 @@ from allauth.socialaccount.providers.twitch.views import TwitchOAuth2Adapter
 
 class TwitchAccount(ProviderAccount):
     def get_profile_url(self):
-        return f"https://twitch.tv/{self.account.extra_data.get('login')}"
+        pass
 
     def get_avatar_url(self):
         # We're using `logo` as a failback for legacy profiles retrieved
         # with the old https://api.twitch.tv/kraken/user endpoint.
-        logo = self.account.extra_data.get("logo")
-        return self.account.extra_data.get("profile_image_url", logo)
+        pass
 
     def to_str(self):
         dflt = super().to_str()

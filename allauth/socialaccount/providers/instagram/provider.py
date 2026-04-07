@@ -7,8 +7,7 @@ class InstagramAccount(ProviderAccount):
     PROFILE_URL = "https://instagram.com/"
 
     def get_profile_url(self):
-        username = self.account.extra_data.get("username")
-        return f"{self.PROFILE_URL}{username}"
+        pass
 
 
 class InstagramProvider(OAuth2Provider):

@@ -22,18 +22,7 @@ class ClientAdmin(admin.ModelAdmin):
     list_filter = ("type", "skip_consent", "allow_uri_wildcards")
 
     def save_model(self, request, obj, form, change):
-        if not change:
-            adapter = get_adapter()
-            secret = adapter.generate_client_secret()
-            obj.set_secret(secret)
-            self.message_user(
-                request,
-                mark_safe(
-                    f'The client secret is only shown once: <input readonly size="{len(secret)}" type="text" value="{escape(secret)}">'
-                ),  # nosec
-                level=messages.WARNING,
-            )
-        return super().save_model(request, obj, form, change)
+        pass
 
 
 @admin.register(Token)

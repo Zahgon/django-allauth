@@ -5,7 +5,7 @@ from allauth.socialaccount.providers.oauth2.provider import OAuth2Provider
 
 class GumroadAccount(ProviderAccount):
     def get_profile_url(self):
-        return self.account.extra_data.get("url")
+        pass
 
 
 class GumroadProvider(OAuth2Provider):

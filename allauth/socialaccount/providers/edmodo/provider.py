@@ -5,10 +5,10 @@ from allauth.socialaccount.providers.oauth2.provider import OAuth2Provider
 
 class EdmodoAccount(ProviderAccount):
     def get_profile_url(self):
-        return self.account.extra_data.get("profile_url")
+        pass
 
     def get_avatar_url(self):
-        return self.account.extra_data.get("avatar_url")
+        pass
 
 
 class EdmodoProvider(OAuth2Provider):

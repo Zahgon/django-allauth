@@ -22,46 +22,19 @@ def generate_opaque_token(request):
     # oauch.io -- at oautlib's default, we get:
     #    Out of 11 valid authorization responses, the
     #    average calculated entropy for the access tokens was 144,3 (±7,1) bits
-    return secrets.token_urlsafe(64)
+    pass
 
 
 def generate_jwt_access_token(request) -> str:
-    adapter = get_adapter()
-    iat = int(time.time())
-    access_token = {
-        "client_id": request.client.id,
-        "iss": adapter.get_issuer(),
-        "iat": iat,
-        "exp": iat + app_settings.ACCESS_TOKEN_EXPIRES_IN,
-        "jti": uuid.uuid4().hex,
-        "token_use": "access",  # nosec
-    }
-    # Client credentials has no user.
-    if request.user is not None:
-        access_token["sub"] = adapter.get_user_sub(request.client, request.user)
-    if request.scopes:
-        access_token["scope"] = " ".join(request.scopes)
-    adapter.populate_access_token(
-        access_token, user=request.user, client=request.client, scopes=request.scopes
-    )
-    jwk_dict, private_key = jwkkit.load_jwk_from_pem(app_settings.PRIVATE_KEY)
-    return jwt.encode(
-        access_token, private_key, algorithm="RS256", headers={"kid": jwk_dict["kid"]}
-    )
+    pass
 
 
 def generate_access_token(request) -> str:
-    fmt = app_settings.ACCESS_TOKEN_FORMAT
-    if fmt == "opaque":
-        return generate_opaque_token(request)
-    elif fmt == "jwt":
-        return generate_jwt_access_token(request)
-    else:
-        raise ValueError(fmt)
+    pass
 
 
 def generate_refresh_token(request) -> str:
-    return generate_opaque_token(request)
+    pass
 
 
 class OAuthLibServer(Server):

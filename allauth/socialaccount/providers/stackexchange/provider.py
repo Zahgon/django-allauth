@@ -7,10 +7,10 @@ from allauth.socialaccount.providers.stackexchange.views import (
 
 class StackExchangeAccount(ProviderAccount):
     def get_profile_url(self):
-        return self.account.extra_data.get("html_url")
+        pass
 
     def get_avatar_url(self):
-        return self.account.extra_data.get("avatar_url")
+        pass
 
 
 class StackExchangeProvider(OAuth2Provider):

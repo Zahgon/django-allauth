@@ -71,7 +71,4 @@ def complete_social_login(request, sociallogin):
 
 
 def socialaccount_user_display(socialaccount):
-    func = app_settings.SOCIALACCOUNT_STR
-    if not func:
-        return user_display(socialaccount.user)
-    return func(socialaccount)
+    pass

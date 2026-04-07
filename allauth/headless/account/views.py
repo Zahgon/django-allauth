@@ -451,20 +451,7 @@ class ManageEmailView(APIView):
         return self._respond_email_list()
 
     def put(self, request, *args, **kwargs):
-        addr = self.input.cleaned_data["email"]
-        if process := self.input.process:
-            sent = False
-            if process.can_resend:
-                try:
-                    self.input.process.resend()
-                    sent = True
-                except RateLimited:
-                    pass
-        else:
-            sent = send_verification_email_to_address(request, addr)
-        return response.RequestEmailVerificationResponse(
-            request, verification_sent=sent
-        )
+        pass
 
     def get_input_class(self):
         if self.verification_stage_process:

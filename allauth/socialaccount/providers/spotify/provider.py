@@ -6,13 +6,10 @@ from allauth.socialaccount.providers.spotify.views import SpotifyOAuth2Adapter
 
 class SpotifyAccount(ProviderAccount):
     def get_profile_url(self):
-        return self.account.extra_data.get("external_urls").get("spotify")
+        pass
 
     def get_avatar_url(self):
-        try:
-            return self.account.extra_data.get("images")[0].get("url")
-        except IndexError:
-            return None
+        pass
 
 
 class SpotifyOAuth2Provider(OAuth2Provider):

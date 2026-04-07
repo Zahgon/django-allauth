@@ -47,24 +47,19 @@ class GitLabOAuth2Adapter(OAuth2Adapter):
     provider_api_version = "v4"
 
     def _build_url(self, path):
-        settings = app_settings.PROVIDERS.get(self.provider_id, {})
-        gitlab_url = settings.get("GITLAB_URL", self.provider_default_url)
-        # Prefer app based setting.
-        app = get_adapter().get_app(context.request, provider=self.provider_id)
-        gitlab_url = app.settings.get("gitlab_url", gitlab_url)
-        return f"{gitlab_url}{path}"
+        pass
 
     @property
     def access_token_url(self):
-        return self._build_url("/oauth/token")
+        pass
 
     @property
     def authorize_url(self):
-        return self._build_url("/oauth/authorize")
+        pass
 
     @property
     def profile_url(self):
-        return self._build_url(f"/api/{self.provider_api_version}/user")
+        pass
 
     def complete_login(self, request, app, token, response):
         with get_adapter().get_requests_session() as sess:

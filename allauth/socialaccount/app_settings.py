@@ -13,7 +13,7 @@ class AppSettings:
         Request email address from 3rd party account provider?
         E.g. using OpenID AX
         """
-        return self._setting("QUERY_EMAIL", self.EMAIL_REQUIRED)
+        pass
 
     @property
     def AUTO_SIGNUP(self) -> bool:
@@ -22,53 +22,24 @@ class AppSettings:
         email) retrieved from the social account provider. If a conflict
         arises due to a duplicate email signup form will still kick in.
         """
-        return self._setting("AUTO_SIGNUP", True)
+        pass
 
     @property
     def PROVIDERS(self) -> dict:
         """
         Provider specific settings
         """
-        ret = self._setting("PROVIDERS", {})
-        oidc = ret.get("openid_connect")
-        if oidc:
-            ret["openid_connect"] = self._migrate_oidc(oidc)
-        return ret
+        pass
 
     def _migrate_oidc(self, oidc: dict) -> dict:
-        servers = oidc.get("SERVERS")
-        if servers is None:
-            return oidc
-        ret = {}
-        apps = []
-        for server in servers:
-            app = dict(**server["APP"])
-            app_settings = {}
-            if "token_auth_method" in server:
-                app_settings["token_auth_method"] = server["token_auth_method"]
-            app_settings["server_url"] = server["server_url"]
-            app.update(
-                {
-                    "name": server.get("name", ""),
-                    "provider_id": server["id"],
-                    "settings": app_settings,
-                }
-            )
-            assert app["provider_id"]  # nosec
-            apps.append(app)
-        ret["APPS"] = apps
-        return ret
+        pass
 
     @property
     def EMAIL_REQUIRED(self) -> bool:
         """
         The user is required to hand over an email address when signing up
         """
-        from allauth.account import app_settings as account_settings
-
-        fields = account_settings.SIGNUP_FIELDS
-        email_required = "email" in fields and fields["email"].get("required")
-        return self._setting("EMAIL_REQUIRED", email_required)
+        pass
 
     @property
     def EMAIL_VERIFICATION(self):
@@ -76,15 +47,7 @@ class AppSettings:
         See email verification method.  When `None`, the default
         `allauth.account` logic kicks in.
         """
-        from allauth import app_settings as allauth_settings
-        from allauth.account import app_settings as account_settings
-
-        dflt = (
-            account_settings.EmailVerificationMethod.NONE
-            if allauth_settings.SOCIALACCOUNT_ONLY
-            else None
-        )
-        return self._setting("EMAIL_VERIFICATION", dflt)
+        pass
 
     @property
     def EMAIL_AUTHENTICATION(self) -> bool:
@@ -103,7 +66,7 @@ class AppSettings:
         to `False`. Only set it to `True` if you are using providers that can be
         fully trusted.
         """
-        return self._setting("EMAIL_AUTHENTICATION", False)
+        pass
 
     @property
     def EMAIL_AUTHENTICATION_AUTO_CONNECT(self) -> bool:
@@ -117,42 +80,39 @@ class AppSettings:
         would still be possible when using ``True``, but not in case of
         ``False``.
         """
-        return self._setting("EMAIL_AUTHENTICATION_AUTO_CONNECT", False)
+        pass
 
     @property
     def ADAPTER(self) -> str:
-        return self._setting(
-            "ADAPTER",
-            "allauth.socialaccount.adapter.DefaultSocialAccountAdapter",
-        )
+        pass
 
     @property
     def FORMS(self) -> dict:
-        return self._setting("FORMS", {})
+        pass
 
     @property
     def LOGIN_ON_GET(self) -> bool:
-        return self._setting("LOGIN_ON_GET", False)
+        pass
 
     @property
     def STORE_TOKENS(self) -> bool:
-        return self._setting("STORE_TOKENS", False)
+        pass
 
     @property
     def UID_MAX_LENGTH(self) -> int:
-        return 191
+        pass
 
     @property
     def SOCIALACCOUNT_STR(self):
-        return self._setting("SOCIALACCOUNT_STR", None)
+        pass
 
     @property
     def REQUESTS_TIMEOUT(self) -> int:
-        return self._setting("REQUESTS_TIMEOUT", 5)
+        pass
 
     @property
     def OPENID_CONNECT_URL_PREFIX(self) -> str:
-        return self._setting("OPENID_CONNECT_URL_PREFIX", "oidc")
+        pass
 
 
 _app_settings = AppSettings("SOCIALACCOUNT_")

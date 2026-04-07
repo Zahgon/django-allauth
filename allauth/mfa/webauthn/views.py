@@ -75,9 +75,7 @@ class ListWebAuthnView(ListView):
     context_object_name = "authenticators"
 
     def get_queryset(self):
-        return Authenticator.objects.filter(
-            user=self.request.user, type=Authenticator.Type.WEBAUTHN
-        )
+        pass
 
 
 list_webauthn = ListWebAuthnView.as_view()
@@ -93,9 +91,7 @@ class RemoveWebAuthnView(NextRedirectMixin, DeleteView):
     success_url = reverse_lazy("mfa_list_webauthn")
 
     def get_queryset(self):
-        return Authenticator.objects.filter(
-            user=self.request.user, type=Authenticator.Type.WEBAUTHN
-        )
+        pass
 
     def form_valid(self, form) -> HttpResponse:
         authenticator = self.get_object()
@@ -188,9 +184,7 @@ class EditWebAuthnView(NextRedirectMixin, UpdateView):
         return get_form_class(app_settings.FORMS, "edit_webauthn", self.form_class)
 
     def get_queryset(self):
-        return Authenticator.objects.filter(
-            user=self.request.user, type=Authenticator.Type.WEBAUTHN
-        )
+        pass
 
 
 edit_webauthn = EditWebAuthnView.as_view()
@@ -208,7 +202,7 @@ class SignupWebAuthnView(FormView):
 
     @property
     def _login_stage(self):
-        return self.request._login_stage
+        pass
 
     def get_context_data(self, **kwargs) -> dict:
         ret = super().get_context_data()

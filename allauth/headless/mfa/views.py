@@ -168,11 +168,7 @@ class ManageWebAuthnView(AuthenticatedAPIView):
         )
 
     def put(self, request, *args, **kwargs):
-        authenticator = self.input.cleaned_data["id"]
-        webauthn_flows.rename_authenticator(
-            request, authenticator, self.input.cleaned_data["name"]
-        )
-        return response.AuthenticatorResponse(request, authenticator)
+        pass
 
     def delete(self, request, *args, **kwargs):
         authenticators = self.input.cleaned_data["authenticators"]
@@ -269,17 +265,7 @@ class SignupWebAuthnView(SignupView):
         return ret
 
     def put(self, request, *args, **kwargs):
-        resp = self._require_stage()
-        if resp:
-            return resp
-        webauthn_flows.signup_authenticator(
-            request,
-            user=self.stage.login.user,
-            name=self.input.cleaned_data["name"],
-            credential=self.input.cleaned_data["credential"],
-        )
-        self.stage.exit()
-        return AuthenticationResponse(request)
+        pass
 
 
 class TrustView(AuthenticationStageAPIView):

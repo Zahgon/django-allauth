@@ -35,17 +35,10 @@ class JWTTokenAuthentication(authentication.TokenAuthentication):
         """
         See: ``settings.HEADLESS_JWT_AUTHORIZATION_HEADER_SCHEME``.
         """
-        return app_settings.JWT_AUTHORIZATION_HEADER_SCHEME
+        pass
 
     def authenticate_credentials(self, key: str):
         """
         Validates the given access token.
         """
-        from allauth.headless.tokens.strategies.jwt.internal import (
-            validate_access_token,
-        )
-
-        user_payload = validate_access_token(key)
-        if user_payload is None:
-            raise AuthenticationFailed("Invalid token.")
-        return user_payload
+        pass

@@ -9,66 +9,55 @@ class AppSettings:
 
     @property
     def ADAPTER(self) -> str:
-        return self._setting(
-            "ADAPTER", "allauth.headless.adapter.DefaultHeadlessAdapter"
-        )
+        pass
 
     @property
     def TOKEN_STRATEGY(self):
-        from allauth.utils import import_attribute
-
-        path = self._setting(
-            "TOKEN_STRATEGY",
-            "allauth.headless.tokens.strategies.sessions.SessionTokenStrategy",
-        )
-        cls = import_attribute(path)
-        return cls()
+        pass
 
     @property
     def SERVE_SPECIFICATION(self) -> bool:
-        return self._setting("SERVE_SPECIFICATION", False)
+        pass
 
     @property
     def SPECIFICATION_TEMPLATE_NAME(self) -> str | None:
-        return self._setting(
-            "SPECIFICATION_TEMPLATE_NAME", "headless/spec/redoc_cdn.html"
-        )
+        pass
 
     @property
     def CLIENTS(self) -> tuple[str]:
-        return tuple(self._setting("CLIENTS", ("browser", "app")))
+        pass
 
     @property
     def FRONTEND_URLS(self) -> dict:
-        return self._setting("FRONTEND_URLS", {})
+        pass
 
     @property
     def JWT_ALGORITHM(self) -> str:
-        return self._setting("JWT_ALGORITHM", "RS256")
+        pass
 
     @property
     def JWT_PRIVATE_KEY(self) -> str:
-        return self._setting("JWT_PRIVATE_KEY", "")
+        pass
 
     @property
     def JWT_ACCESS_TOKEN_EXPIRES_IN(self) -> int:
-        return self._setting("JWT_ACCESS_TOKEN_EXPIRES_IN", 300)
+        pass
 
     @property
     def JWT_REFRESH_TOKEN_EXPIRES_IN(self) -> int:
-        return self._setting("JWT_REFRESH_TOKEN_EXPIRES_IN", 86400)
+        pass
 
     @property
     def JWT_AUTHORIZATION_HEADER_SCHEME(self) -> str:
-        return self._setting("JWT_AUTHORIZATION_HEADER_SCHEME", "Bearer")
+        pass
 
     @property
     def JWT_STATEFUL_VALIDATION_ENABLED(self) -> bool:
-        return self._setting("JWT_STATEFUL_VALIDATION_ENABLED", False)
+        pass
 
     @property
     def JWT_ROTATE_REFRESH_TOKEN(self) -> bool:
-        return self._setting("JWT_ROTATE_REFRESH_TOKEN", True)
+        pass
 
 
 _app_settings = AppSettings("HEADLESS_")

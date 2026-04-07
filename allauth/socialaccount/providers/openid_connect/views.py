@@ -20,34 +20,23 @@ class OpenIDConnectOAuth2Adapter(OAuth2Adapter):
 
     @property
     def openid_config(self):
-        if not hasattr(self, "_openid_config"):
-            server_url = self.get_provider().server_url
-            with get_adapter().get_requests_session() as sess:
-                resp = sess.get(server_url)
-                resp.raise_for_status()
-                self._openid_config = resp.json()
-        return self._openid_config
+        pass
 
     @property
     def basic_auth(self):
-        token_auth_method = self.get_provider().app.settings.get("token_auth_method")
-        if token_auth_method:
-            return token_auth_method == "client_secret_basic"  # nosec
-        methods = self.openid_config.get("token_endpoint_auth_methods_supported", [])
-        # Basic auth is problematic, especially when client ID contains a colon.
-        return "client_secret_post" not in methods and "client_secret_basic" in methods
+        pass
 
     @property
     def access_token_url(self):
-        return self.openid_config["token_endpoint"]
+        pass
 
     @property
     def authorize_url(self):
-        return self.openid_config["authorization_endpoint"]
+        pass
 
     @property
     def profile_url(self):
-        return self.openid_config["userinfo_endpoint"]
+        pass
 
     def complete_login(self, request, app, token: SocialToken, **kwargs):
         id_token_str = kwargs["response"].get("id_token")

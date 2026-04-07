@@ -221,15 +221,7 @@ class AuthorizationView(FormView):
         return ret
 
     def get_initial(self) -> dict:
-        signer = Signer()
-        ret = {}
-        request_info = self._request_info
-        request_info.pop("request", None)
-        prompt = request_info.get("prompt")
-        if isinstance(prompt, set):
-            request_info["prompt"] = list(prompt)
-        ret["request"] = signer.sign_object((self._scopes, request_info))
-        return ret
+        pass
 
     def form_valid(self, form) -> HttpResponse:
         orequest = extract_params(self.request)

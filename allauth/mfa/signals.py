@@ -20,10 +20,4 @@ authenticator_reset = Signal()
 
 
 def on_add_email(sender, email, user, **kwargs):
-    if app_settings.ALLOW_UNVERIFIED_EMAIL:
-        return
-    if account_settings.EMAIL_VERIFICATION_BY_CODE_ENABLED:
-        return
-    if is_mfa_enabled(user):
-        adapter = get_adapter()
-        raise adapter.validation_error("add_email_blocked")
+    pass

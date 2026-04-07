@@ -7,7 +7,7 @@ from allauth.socialaccount.providers.oauth2.provider import OAuth2Provider
 class CleverAccount(ProviderAccount):
     def get_avatar_url(self):
         # return self.account.extra_data.get('user').get('image_192', None)
-        return None
+        pass
 
     def get_user_data(self):
         return self.account.extra_data.get("data", {})

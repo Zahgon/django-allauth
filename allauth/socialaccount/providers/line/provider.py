@@ -5,9 +5,7 @@ from allauth.socialaccount.providers.oauth2.provider import OAuth2Provider
 
 class LineAccount(ProviderAccount):
     def get_avatar_url(self):
-        return self.account.extra_data.get("pictureUrl") or self.account.extra_data.get(
-            "picture"
-        )
+        pass
 
 
 class LineProvider(OAuth2Provider):

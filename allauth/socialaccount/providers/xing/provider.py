@@ -5,10 +5,10 @@ from allauth.socialaccount.providers.xing.views import XingOAuthAdapter
 
 class XingAccount(ProviderAccount):
     def get_profile_url(self):
-        return self.account.extra_data.get("permalink")
+        pass
 
     def get_avatar_url(self):
-        return self.account.extra_data.get("photo_urls", {}).get("large")
+        pass
 
     def to_str(self):
         dflt = super().to_str()

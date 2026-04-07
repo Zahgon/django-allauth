@@ -9,20 +9,10 @@ class TwitterAccount(ProviderAccount):
         return self.account.extra_data.get("screen_name")
 
     def get_profile_url(self):
-        ret = None
-        screen_name = self.get_screen_name()
-        if screen_name:
-            ret = f"https://x.com/{screen_name}"
-        return ret
+        pass
 
     def get_avatar_url(self):
-        ret = None
-        profile_image_url = self.account.extra_data.get("profile_image_url")
-        if profile_image_url:
-            # Hmm, hack to get our hands on the large image.  Not
-            # really documented, but seems to work.
-            ret = profile_image_url.replace("_normal", "")
-        return ret
+        pass
 
     def to_str(self):
         screen_name = self.get_screen_name()

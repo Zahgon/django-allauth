@@ -24,11 +24,7 @@ class AuthenticationStatus:
 
     @property
     def has_pending_signup(self) -> bool:
-        if not allauth_settings.SOCIALACCOUNT_ENABLED:
-            return False
-        from allauth.socialaccount.internal import flows
-
-        return bool(flows.signup.get_pending_signup(self.request))
+        pass
 
 
 def purge_request_user_cache(request) -> None:

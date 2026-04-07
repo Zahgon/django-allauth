@@ -17,28 +17,23 @@ class AmazonCognitoOAuth2Adapter(OAuth2Adapter):
 
     @property
     def settings(self):
-        return app_settings.PROVIDERS.get(self.provider_id, {})
+        pass
 
     @property
     def domain(self):
-        domain = self.settings.get("DOMAIN")
-
-        if domain is None:
-            raise ValueError(self.DOMAIN_KEY_MISSING_ERROR)
-
-        return domain
+        pass
 
     @property
     def access_token_url(self):
-        return f"{self.domain}/oauth2/token"
+        pass
 
     @property
     def authorize_url(self):
-        return f"{self.domain}/oauth2/authorize"
+        pass
 
     @property
     def profile_url(self):
-        return f"{self.domain}/oauth2/userInfo"
+        pass
 
     def complete_login(self, request, app, token: SocialToken, **kwargs):
         headers = {

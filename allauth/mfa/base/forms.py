@@ -20,19 +20,7 @@ class BaseAuthenticateForm(forms.Form):
         super().__init__(*args, **kwargs)
 
     def clean_code(self) -> str:
-        clear_rl = check_rate_limit(self.user)
-        code = self.cleaned_data["code"]
-        for auth in Authenticator.objects.filter(user=self.user).exclude(
-            # WebAuthn cannot validate manual codes.
-            type=Authenticator.Type.WEBAUTHN
-        ):
-            if auth.wrap().validate_code(code):
-                auth.user = self.user
-                self.authenticator = auth
-                clear_rl()
-                return code
-
-        raise get_adapter().validation_error("incorrect_code")
+        pass
 
 
 class AuthenticateForm(BaseAuthenticateForm):

@@ -7,10 +7,10 @@ from allauth.socialaccount.providers.trainingpeaks.views import (
 
 class TrainingPeaksAccount(ProviderAccount):
     def get_profile_url(self):
-        return "https://app.trainingpeaks.com"
+        pass
 
     def get_avatar_url(self):
-        return None
+        pass
 
 
 class TrainingPeaksProvider(OAuth2Provider):

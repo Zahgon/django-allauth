@@ -14,13 +14,7 @@ settings = getattr(settings, "SOCIALACCOUNT_PROVIDERS", {}).get("mediawiki", {})
 
 class MediaWikiAccount(ProviderAccount):
     def get_profile_url(self):
-        userpage = settings.get(
-            "USERPAGE_TEMPLATE", "https://meta.wikimedia.org/wiki/User:{username}"
-        )
-        username = self.account.extra_data.get("username")
-        if not username:
-            return None
-        return userpage.format(username=username.replace(" ", "_"))
+        pass
 
 
 class MediaWikiProvider(OAuth2Provider):

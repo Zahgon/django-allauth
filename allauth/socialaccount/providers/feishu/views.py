@@ -27,9 +27,7 @@ class FeishuOAuth2Adapter(OAuth2Adapter):
 
     @property
     def authorize_url(self):
-        settings = self.get_provider().get_settings()
-        url = settings.get("AUTHORIZE_URL", self.authorization_url)
-        return url
+        pass
 
     def complete_login(self, request, app, token, **kwargs):
         headers = {

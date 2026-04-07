@@ -21,13 +21,7 @@ class ShopifyProvider(OAuth2Provider):
 
     @property
     def is_per_user(self):
-        grant_options = (
-            getattr(settings, "SOCIALACCOUNT_PROVIDERS", {})
-            .get("shopify", {})
-            .get("AUTH_PARAMS", {})
-            .get("grant_options[]", "")
-        )
-        return grant_options.lower().strip() == "per-user"
+        pass
 
     def get_auth_params_from_request(self, request, action):
         ret = super().get_auth_params_from_request(request, action)

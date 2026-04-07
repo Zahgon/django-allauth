@@ -36,15 +36,7 @@ from .utils import (
 
 class EmailAwarePasswordResetTokenGenerator(PasswordResetTokenGenerator):
     def _make_hash_value(self, user, timestamp):
-        ret = super()._make_hash_value(user, timestamp)
-        sync_user_email_address(user)
-        email = user_email(user)
-        emails = set([email] if email else [])
-        emails.update(
-            EmailAddress.objects.filter(user=user).values_list("email", flat=True)
-        )
-        ret += "|".join(sorted(emails))
-        return ret
+        pass
 
 
 default_token_generator = app_settings.PASSWORD_RESET_TOKEN_GENERATOR()
@@ -170,8 +162,7 @@ class LoginForm(forms.Form):
         return credentials
 
     def clean_login(self) -> str:
-        login = self.cleaned_data["login"]
-        return login.strip()
+        pass
 
     def clean(self):
         cleaned_data = super().clean()
@@ -369,8 +360,7 @@ class BaseSignupForm(base_signup_form_class()):  # type: ignore[misc]
         return value
 
     def clean_email2(self) -> str:
-        value = self.cleaned_data["email2"].lower()
-        return value
+        pass
 
     def validate_unique_email(self, value) -> str:
         email, self.account_already_exists = flows.manage_email.email_already_exists(
@@ -597,9 +587,7 @@ class ChangePasswordForm(PasswordVerificationMixin, UserForm):
         self.fields["password1"].user = self.user
 
     def clean_oldpassword(self) -> str:
-        if not self.user.check_password(self.cleaned_data.get("oldpassword")):
-            raise get_adapter().validation_error("enter_current_password")
-        return self.cleaned_data["oldpassword"]
+        pass
 
     def save(self) -> None:
         flows.password_change.change_password(self.user, self.cleaned_data["password1"])
@@ -774,10 +762,7 @@ class BaseConfirmCodeForm(forms.Form):
         super().__init__(*args, **kwargs)
 
     def clean_code(self) -> str:
-        code = self.cleaned_data["code"]
-        if not compare_user_code(actual=code, expected=self.expected_code):
-            raise get_adapter().validation_error("incorrect_code")
-        return code
+        pass
 
 
 class ConfirmLoginCodeForm(BaseConfirmCodeForm):
@@ -791,11 +776,7 @@ class ConfirmEmailVerificationCodeForm(BaseConfirmCodeForm):
         super().__init__(*args, **kwargs)
 
     def clean_code(self) -> str:
-        code = super().clean_code()
-        if code:
-            # We have a valid code. But, can we actually perform the change?
-            email_already_exists(user=self.user, email=self.email, always_raise=True)
-        return code
+        pass
 
 
 class ConfirmPasswordResetCodeForm(BaseConfirmCodeForm):
@@ -809,11 +790,7 @@ class VerifyPhoneForm(BaseConfirmCodeForm):
         super().__init__(*args, **kwargs)
 
     def clean_code(self) -> str:
-        code = super().clean_code()
-        if code:
-            # We have a valid code. But, can we actually perform the change?
-            phone_already_exists(self.user, self.phone, always_raise=True)
-        return code
+        pass
 
 
 class ChangePhoneForm(forms.Form):

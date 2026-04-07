@@ -37,7 +37,7 @@ class DefaultOIDCAdapter(BaseAdapter):
         """
         The client ID to use for newly created clients.
         """
-        return uuid.uuid4().hex
+        pass
 
     def generate_client_secret(self) -> str:
         """

@@ -5,7 +5,7 @@ from allauth.socialaccount.providers.paypal.views import PaypalOAuth2Adapter
 
 class PaypalAccount(ProviderAccount):
     def get_avatar_url(self):
-        return self.account.extra_data.get("picture")
+        pass
 
 
 class PaypalProvider(OAuth2Provider):

@@ -118,27 +118,7 @@ def apple_post_callback(request, finish_endpoint_name="apple_finish_callback"):
             overridden in your url configuration if you have more than one
             callback endpoint.
     """
-    if request.method != "POST":
-        return HttpResponseNotAllowed(["POST"])
-    apple_session = get_apple_session(request)
-
-    # Add regular OAuth2 params to the URL - reduces the overrides required
-    keys_to_put_in_url = ["code", "state", "error"]
-    url_params = {}
-    for key in keys_to_put_in_url:
-        value = get_request_param(request, key, "")
-        if value:
-            url_params[key] = value
-
-    # Add other params to the apple_login_session
-    keys_to_save_to_session = ["user", "id_token"]
-    for key in keys_to_save_to_session:
-        apple_session.store[key] = get_request_param(request, key, "")
-
-    url = build_absolute_uri(request, reverse(finish_endpoint_name))
-    response = HttpResponseRedirect(f"{url}?{urlencode(url_params)}")
-    apple_session.save(response)
-    return response
+    pass
 
 
 oauth2_login = OAuth2LoginView.adapter_view(AppleOAuth2Adapter)

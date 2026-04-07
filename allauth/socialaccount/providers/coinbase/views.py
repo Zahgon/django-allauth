@@ -11,15 +11,15 @@ class CoinbaseOAuth2Adapter(OAuth2Adapter):
 
     @property
     def authorize_url(self):
-        return "https://www.coinbase.com/oauth/authorize"
+        pass
 
     @property
     def access_token_url(self):
-        return "https://www.coinbase.com/oauth/token"
+        pass
 
     @property
     def profile_url(self):
-        return "https://api.coinbase.com/v2/user"
+        pass
 
     def complete_login(self, request, app, token, **kwargs):
         with get_adapter().get_requests_session() as sess:

@@ -28,7 +28,7 @@ class EmailVerificationProcess(AbstractCodeVerificationProcess):
 
     @property
     def email(self) -> str:
-        return self.state["email"]
+        pass
 
     def persist(self) -> None:
         self.request.session[EMAIL_VERIFICATION_CODE_SESSION_KEY] = self.state
@@ -56,14 +56,7 @@ class EmailVerificationProcess(AbstractCodeVerificationProcess):
 
     @cached_property
     def email_address(self) -> EmailAddress:
-        email = self.state["email"]
-        if not self.user or self.state.get("account_already_exists"):
-            return EmailAddress(email=email)
-        try:
-            email_address = EmailAddress.objects.get_for_user(self.user, email)
-        except EmailAddress.DoesNotExist:
-            email_address = EmailAddress(user=self.user, email=email)
-        return email_address
+        pass
 
     def finish(self) -> EmailAddress | None:
         from allauth.account.internal.flows.email_verification import (
@@ -102,13 +95,7 @@ class EmailVerificationProcess(AbstractCodeVerificationProcess):
         # TODO: Prevent enumeration flaw: if we don't have a user, we cannot
         # change the email. To fix this, we would need to serialize
         # the user and perform an on-the-fly signup here.
-        return (
-            not self.is_change_quota_reached(
-                app_settings.EMAIL_VERIFICATION_MAX_CHANGE_COUNT
-            )
-            and bool(self.user)
-            and not did_user_login(self.user)
-        )
+        pass
 
     def change_to(self, email: str, account_already_exists: bool) -> None:
         self.state["account_already_exists"] = account_already_exists
@@ -126,9 +113,7 @@ class EmailVerificationProcess(AbstractCodeVerificationProcess):
 
     @property
     def can_resend(self) -> bool:
-        return not self.is_resend_quota_reached(
-            app_settings.EMAIL_VERIFICATION_MAX_RESEND_COUNT
-        )
+        pass
 
     def resend(self) -> None:
         self.generate_code()
@@ -138,4 +123,4 @@ class EmailVerificationProcess(AbstractCodeVerificationProcess):
 
     @property
     def key(self):
-        return self.code
+        pass

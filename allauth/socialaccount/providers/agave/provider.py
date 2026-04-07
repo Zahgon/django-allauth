@@ -5,10 +5,10 @@ from allauth.socialaccount.providers.oauth2.provider import OAuth2Provider
 
 class AgaveAccount(ProviderAccount):
     def get_profile_url(self):
-        return self.account.extra_data.get("web_url", "dflt")
+        pass
 
     def get_avatar_url(self):
-        return self.account.extra_data.get("avatar_url", "dflt")
+        pass
 
 
 class AgaveProvider(OAuth2Provider):

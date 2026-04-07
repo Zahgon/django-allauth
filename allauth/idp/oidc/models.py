@@ -9,15 +9,11 @@ from allauth.idp.oidc.adapter import get_adapter
 
 
 def default_client_id() -> str:
-    adapter = get_adapter()
-    client_id = adapter.generate_client_id()
-    return client_id
+    pass
 
 
 def default_client_secret() -> str:
-    adapter = get_adapter()
-    client_secret = adapter.generate_client_secret()
-    return make_password(client_secret)
+    pass
 
 
 def _values_from_text(text) -> list[str]:
@@ -25,9 +21,7 @@ def _values_from_text(text) -> list[str]:
 
 
 def _values_to_text(values) -> str:
-    if isinstance(values, str):
-        raise ValueError(values)
-    return "\n".join(values)
+    pass
 
 
 class Client(models.Model):
@@ -117,43 +111,43 @@ class Client(models.Model):
         return _values_from_text(self.redirect_uris)
 
     def set_redirect_uris(self, uris: list[str]) -> None:
-        self.redirect_uris = _values_to_text(uris)
+        pass
 
     def get_cors_origins(self) -> list[str]:
         return _values_from_text(self.cors_origins)
 
     def set_cors_origins(self, uris: list[str]) -> None:
-        self.cors_origins = _values_to_text(uris)
+        pass
 
     def get_scopes(self) -> list[str]:
         return _values_from_text(self.scopes)
 
     def set_scopes(self, scopes: list[str]) -> None:
-        self.scopes = _values_to_text(scopes)
+        pass
 
     def get_default_scopes(self) -> list[str]:
-        return _values_from_text(self.default_scopes)
+        pass
 
     def set_default_scopes(self, scopes: list[str]) -> None:
-        self.default_scopes = _values_to_text(scopes)
+        pass
 
     def get_response_types(self) -> list[str]:
         return _values_from_text(self.response_types)
 
     def set_response_types(self, response_types: list[str]) -> None:
-        self.response_types = _values_to_text(response_types)
+        pass
 
     def get_grant_types(self) -> list[str]:
         return _values_from_text(self.grant_types)
 
     def set_grant_types(self, grant_types: list[str]) -> None:
-        self.grant_types = _values_to_text(grant_types)
+        pass
 
     def set_secret(self, secret) -> None:
-        self.secret = make_password(secret)
+        pass
 
     def check_secret(self, secret: str) -> bool:
-        return check_password(secret, self.secret)
+        pass
 
     def clean_redirect_uris(self) -> list[str]:
         from allauth.idp.oidc.internal.clientkit import _validate_uri_wildcard_format
@@ -225,16 +219,14 @@ class Token(models.Model):
         return _values_from_text(self.scopes)
 
     def set_scopes(self, scopes: list[str]) -> None:
-        self.scopes = _values_to_text(scopes)
+        pass
 
     def set_scope_email(self, email: str) -> None:
         """
         In case a specific email was chosen to be exposed to the client,
         store that using this method.
         """
-        if self.data is None:
-            self.data = {}
-        self.data["email"] = email
+        pass
 
     def get_scope_email(self) -> str | None:
         """
@@ -242,6 +234,4 @@ class Token(models.Model):
         granted.  Note that this may e outdated, as the user can change email
         addresses at any time.
         """
-        if not isinstance(self.data, dict):
-            return None
-        return self.data.get("email")
+        pass

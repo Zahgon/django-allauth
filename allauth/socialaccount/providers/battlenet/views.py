@@ -92,43 +92,23 @@ class BattleNetOAuth2Adapter(OAuth2Adapter):
     @property
     def battlenet_region(self):
         # Check by URI query parameter first.
-        region = self.request.GET.get("region", "").lower()
-        if region == Region.SEA:
-            # South-East Asia uses the same region as US everywhere
-            return Region.US
-        if region in self.valid_regions:
-            return region
-
-        # Second, check the provider settings.
-        region = (
-            getattr(settings, "SOCIALACCOUNT_PROVIDERS", {})
-            .get("battlenet", {})
-            .get("REGION", "us")
-        )
-
-        if region in self.valid_regions:
-            return region
-
-        return Region.US
+        pass
 
     @property
     def battlenet_base_url(self):
-        region = self.battlenet_region
-        if region == Region.CN:
-            return "https://oauth.battlenet.com.cn"
-        return "https://oauth.battle.net"
+        pass
 
     @property
     def access_token_url(self):
-        return f"{self.battlenet_base_url}/token"
+        pass
 
     @property
     def authorize_url(self):
-        return f"{self.battlenet_base_url}/authorize"
+        pass
 
     @property
     def profile_url(self):
-        return f"{self.battlenet_base_url}/userinfo"
+        pass
 
     def complete_login(self, request, app, token, **kwargs):
         headers = {"authorization": f"Bearer {token.token}"}

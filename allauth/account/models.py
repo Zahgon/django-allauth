@@ -202,7 +202,7 @@ class EmailConfirmationHMAC(EmailConfirmationMixin):
 
     @property
     def key(self) -> str:
-        return signing.dumps(obj=self.email_address.pk, salt=app_settings.SALT)
+        pass
 
     @classmethod
     def from_key(cls, key: str) -> EmailConfirmationHMAC | None:

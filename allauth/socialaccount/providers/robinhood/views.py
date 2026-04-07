@@ -11,15 +11,15 @@ class RobinhoodOAuth2Adapter(OAuth2Adapter):
 
     @property
     def authorize_url(self):
-        return "https://www.robinhood.com/oauth2/authorize/"
+        pass
 
     @property
     def access_token_url(self):
-        return "https://api.robinhood.com/oauth2/token/"
+        pass
 
     @property
     def profile_url(self):
-        return "https://api.robinhood.com/user/id/"
+        pass
 
     def complete_login(self, request, app, token, **kwargs):
         headers = {"Authorization": f"Bearer {token.token}"}

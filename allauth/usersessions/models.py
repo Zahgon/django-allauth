@@ -30,56 +30,7 @@ class UserSessionManager(models.Manager):
         return ret
 
     def create_from_request(self, request: HttpRequest):
-        if not request.user.is_authenticated:
-            raise ValueError()
-        if not request.session.session_key:
-            request.session.save()
-        ua = request.META.get("HTTP_USER_AGENT", "")[
-            0 : UserSession._meta.get_field("user_agent").max_length
-        ]
-
-        defaults = dict(
-            user=request.user,
-            ip=get_adapter().get_client_ip(request),
-            user_agent=ua,
-        )
-
-        from_session = None
-        with transaction.atomic():
-            from allauth.usersessions.signals import session_client_changed
-
-            session, created = UserSession.objects.get_or_create(
-                session_key=request.session.session_key, defaults=defaults
-            )
-
-            if not created:
-                from_session = UserSession(
-                    session_key=session.session_key,
-                    user=session.user,
-                    ip=session.ip,
-                    user_agent=session.user_agent,
-                    data=session.data,
-                    created_at=session.created_at,
-                    last_seen_at=session.last_seen_at,
-                )
-                # Update session
-                session.user = defaults["user"]
-                session.ip = defaults["ip"]
-                session.user_agent = defaults["user_agent"]
-                session.last_seen_at = timezone.now()
-
-                session.save()
-
-        if from_session and (
-            from_session.ip != session.ip
-            or from_session.user_agent != session.user_agent
-        ):
-            session_client_changed.send(
-                sender=UserSession,
-                request=request,
-                from_session=from_session,
-                to_session=session,
-            )
+        pass
 
 
 class UserSession(models.Model):

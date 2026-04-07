@@ -19,17 +19,7 @@ class RedirectToProviderForm(forms.Form):
     )
 
     def clean_callback_url(self) -> str:
-        url = self.cleaned_data["callback_url"]
-        if not get_account_adapter().is_safe_url(url):
-            raise get_adapter().validation_error("invalid_url")
-        return url
+        pass
 
     def clean_provider(self):
-        provider_id = self.cleaned_data["provider"]
-        try:
-            provider = get_socialaccount_adapter().get_provider(
-                context.request, provider_id
-            )
-        except ObjectDoesNotExist:
-            raise get_adapter().validation_error("unknown_provider")
-        return provider
+        pass

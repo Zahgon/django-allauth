@@ -14,30 +14,10 @@ class EmailAddressAdmin(admin.ModelAdmin):
     actions = ["make_verified"]
 
     def get_search_fields(self, request):
-        base_fields = get_adapter().get_user_search_fields()
-        return ["email"] + list(map(lambda a: f"user__{a}", base_fields))
+        pass
 
     def make_verified(self, request, queryset):
-        for email_address in queryset.filter(verified=False).iterator():
-            if email_address.set_verified():
-                signals.email_confirmed.send(
-                    sender=EmailAddress,
-                    request=request,
-                    email_address=email_address,
-                )
-                self.message_user(
-                    request,
-                    _("Marked {email} as verified.").format(email=email_address.email),
-                    level=messages.SUCCESS,
-                )
-            else:
-                self.message_user(
-                    request,
-                    _("Failed to mark {email} as verified.").format(
-                        email=email_address.email
-                    ),
-                    level=messages.ERROR,
-                )
+        pass
 
     make_verified.short_description = _("Mark selected email addresses as verified")  # type: ignore[attr-defined]
 

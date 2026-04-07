@@ -43,10 +43,10 @@ IDENTITY_CLAIMS = frozenset(
 
 class AuthentiqAccount(ProviderAccount):
     def get_profile_url(self):
-        return self.account.extra_data.get("profile")
+        pass
 
     def get_avatar_url(self):
-        return self.account.extra_data.get("picture")
+        pass
 
 
 class AuthentiqProvider(OAuth2Provider):

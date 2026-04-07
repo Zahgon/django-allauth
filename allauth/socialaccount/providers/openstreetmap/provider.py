@@ -7,20 +7,13 @@ from allauth.socialaccount.providers.openstreetmap.views import (
 
 class OpenStreetMapAccount(ProviderAccount):
     def get_profile_url(self):
-        display_name = self.account.extra_data["display_name"]
-        return f"https://www.openstreetmap.org/user/{display_name}"
+        pass
 
     def get_avatar_url(self):
-        ret = None
-        if img := self.account.extra_data.get("img"):
-            ret = img.get("href")
-        if not ret:
-            # Backwards compatible (OSM provider data originating from XML)
-            ret = self.account.extra_data.get("avatar")
-        return ret
+        pass
 
     def get_username(self):
-        return self.account.extra_data["display_name"]
+        pass
 
 
 class OpenStreetMapProvider(OAuthProvider):

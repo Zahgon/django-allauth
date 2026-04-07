@@ -33,28 +33,7 @@ def verified_email_required(
     presented with a page informing them they needs to verify their email
     address.
     """
-
-    def decorator(view_func):
-        @login_required(redirect_field_name=redirect_field_name, login_url=login_url)
-        def _wrapped_view(request, *args, **kwargs):
-            if not EmailAddress.objects.filter(
-                user=request.user, verified=True
-            ).exists():
-                send_verification_email_for_user(request, request.user)
-                if app_settings.EMAIL_VERIFICATION_BY_CODE_ENABLED:
-                    url = httpkit.add_query_params(
-                        reverse("account_email_verification_sent"),
-                        {REDIRECT_FIELD_NAME: request.get_full_path()},
-                    )
-                    return HttpResponseRedirect(url)
-                return render(request, "account/verified_email_required.html")
-            return view_func(request, *args, **kwargs)
-
-        return _wrapped_view
-
-    if function:
-        return decorator(function)
-    return decorator
+    pass
 
 
 def reauthentication_required(
@@ -63,45 +42,14 @@ def reauthentication_required(
     allow_get=False,
     enabled=None,
 ):
-    def decorator(view_func):
-        @wraps(view_func)
-        def _wrapper_view(request, *args, **kwargs):
-            pass_method = allow_get and request.method == "GET"
-            ena = (enabled is None) or (
-                enabled(request) if callable(enabled) else enabled
-            )
-            if ena and not pass_method:
-                if (
-                    request.user.is_anonymous
-                    or not reauthentication.did_recently_authenticate(request)
-                ):
-                    raise ReauthenticationRequired()
-            return view_func(request, *args, **kwargs)
-
-        return _wrapper_view
-
-    if function:
-        return decorator(function)
-    return decorator
+    pass
 
 
 def secure_admin_login(function=None):
     def decorator(view_func):
         @wraps(view_func)
         def _wrapper_view(request, *args, **kwargs):
-            if request.user.is_authenticated:
-                if not request.user.is_staff or not request.user.is_active:
-                    raise PermissionDenied()
-                return view_func(request, *args, **kwargs)
-            else:
-                next_url = get_next_redirect_url(request)
-                if not next_url:
-                    next_url = request.get_full_path()
-                login_url = resolve_url(settings.LOGIN_URL)
-                login_url = httpkit.add_query_params(
-                    login_url, {REDIRECT_FIELD_NAME: next_url}
-                )
-                return HttpResponseRedirect(login_url)
+            pass
 
         return _wrapper_view
 

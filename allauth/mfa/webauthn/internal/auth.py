@@ -118,23 +118,11 @@ def get_credentials(user) -> list[AttestedCredentialData]:
 def get_authenticator_by_credential_id(
     user, credential_id: bytes
 ) -> Authenticator | None:
-    authenticators = Authenticator.objects.filter(
-        user=user, type=Authenticator.Type.WEBAUTHN
-    )
-    for authenticator in authenticators:
-        if (
-            credential_id
-            == authenticator.wrap().authenticator_data.credential_data.credential_id
-        ):
-            return authenticator
-    return None
+    pass
 
 
 def parse_authentication_response(response: Any) -> AuthenticationResponse:
-    try:
-        return AuthenticationResponse.from_dict(response)
-    except (TypeError, ValueError):
-        raise get_adapter().validation_error("incorrect_code")
+    pass
 
 
 def begin_authentication(user=None) -> dict:
@@ -148,33 +136,11 @@ def begin_authentication(user=None) -> dict:
 
 
 def extract_user_from_response(response: dict):
-    try:
-        user_handle = response.get("response", {}).get("userHandle")
-        user_pk = url_str_to_user_pk(websafe_decode(user_handle).decode("utf8"))
-    except (ValueError, TypeError, KeyError):
-        raise get_adapter().validation_error("incorrect_code")
-    user = get_user_model().objects.filter(pk=user_pk).first()
-    if not user:
-        raise get_adapter().validation_error("incorrect_code")
-    return user
+    pass
 
 
 def complete_authentication(user, response: dict) -> Authenticator:
-    credentials = get_credentials(user)
-    server = get_server()
-    state = get_state()
-    if not state:
-        raise get_adapter().validation_error("incorrect_code")
-    try:
-        binding = server.authenticate_complete(state, credentials, response)
-    except ValueError as e:
-        # ValueError: Unknown credential ID.
-        raise get_adapter().validation_error("incorrect_code") from e
-    clear_state()
-    authenticator = get_authenticator_by_credential_id(user, binding.credential_id)
-    if not authenticator:
-        raise get_adapter().validation_error("incorrect_code")
-    return authenticator
+    pass
 
 
 class WebAuthn:
@@ -196,23 +162,16 @@ class WebAuthn:
 
     @property
     def name(self) -> str:
-        return self.instance.data["name"]
+        pass
 
     @name.setter
     def name(self, name: str) -> None:
-        self.instance.data["name"] = name
+        pass
 
     @property
     def authenticator_data(self) -> AuthenticatorData:
-        return parse_registration_response(
-            self.instance.data["credential"]
-        ).response.attestation_object.auth_data
+        pass
 
     @property
     def is_passwordless(self) -> bool | None:
-        return (
-            self.instance.data.get("credential", {})
-            .get("clientExtensionResults", {})
-            .get("credProps", {})
-            .get("rk")
-        )
+        pass

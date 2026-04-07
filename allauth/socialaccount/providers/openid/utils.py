@@ -75,75 +75,16 @@ class DBOpenIDStore(OIDStore):
     max_nonce_age = 6 * 60 * 60
 
     def storeAssociation(self, server_url, assoc=None):
-        try:
-            secret = base64.encodebytes(assoc.secret)
-        except AttributeError:
-            # Python 2.x compat
-            secret = base64.encodestring(assoc.secret)
-        else:
-            secret = secret.decode()
-        OpenIDStore.objects.create(
-            server_url=server_url,
-            handle=assoc.handle,
-            secret=secret,
-            issued=assoc.issued,
-            lifetime=assoc.lifetime,
-            assoc_type=assoc.assoc_type,
-        )
+        pass
 
     def getAssociation(self, server_url, handle=None):
-        stored_assocs = OpenIDStore.objects.filter(server_url=server_url)
-        if handle:
-            stored_assocs = stored_assocs.filter(handle=handle)
-
-        stored_assocs.order_by("-issued")
-
-        if not stored_assocs.exists():
-            return None
-
-        return_val = None
-
-        for stored_assoc in stored_assocs:
-            assoc = OIDAssociation(
-                stored_assoc.handle,
-                base64.decodebytes(stored_assoc.secret.encode("utf-8")),
-                stored_assoc.issued,
-                stored_assoc.lifetime,
-                stored_assoc.assoc_type,
-            )
-            # See:
-            # necaris/python3-openid@1abb155c8fc7b508241cbe9d2cae24f18e4a379b
-            if hasattr(assoc, "getExpiresIn"):
-                expires_in = assoc.getExpiresIn()
-            else:
-                expires_in = assoc.expiresIn
-            if expires_in == 0:
-                stored_assoc.delete()
-            else:
-                if return_val is None:
-                    return_val = assoc
-
-        return return_val
+        pass
 
     def removeAssociation(self, server_url, handle):
-        stored_assocs = OpenIDStore.objects.filter(server_url=server_url)
-        if handle:
-            stored_assocs = stored_assocs.filter(handle=handle)
-
-        stored_assocs.delete()
+        pass
 
     def useNonce(self, server_url, timestamp, salt):
-        try:
-            OpenIDNonce.objects.get(
-                server_url=server_url, timestamp=timestamp, salt=salt
-            )
-        except OpenIDNonce.DoesNotExist:
-            OpenIDNonce.objects.create(
-                server_url=server_url, timestamp=timestamp, salt=salt
-            )
-            return True
-
-        return False
+        pass
 
 
 def get_email_from_response(response):

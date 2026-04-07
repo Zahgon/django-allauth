@@ -13,25 +13,19 @@ class NextCloudOAuth2Adapter(OAuth2Adapter):
     provider_id = "nextcloud"
 
     def _build_server_url(self, path):
-        settings = app_settings.PROVIDERS.get(self.provider_id, {})
-        server = settings.get("SERVER", "https://nextcloud.example.org")
-        # Prefer app based setting.
-        app = get_adapter().get_app(context.request, provider=self.provider_id)
-        server = app.settings.get("server", server)
-        ret = f"{server}{path}"
-        return ret
+        pass
 
     @property
     def access_token_url(self):
-        return self._build_server_url("/apps/oauth2/api/v1/token")
+        pass
 
     @property
     def authorize_url(self):
-        return self._build_server_url("/apps/oauth2/authorize")
+        pass
 
     @property
     def profile_url(self):
-        return self._build_server_url("/ocs/v1.php/cloud/users/")
+        pass
 
     def complete_login(self, request, app, token: SocialToken, **kwargs):
         extra_data = self.get_user_info(token, kwargs["response"]["user_id"])

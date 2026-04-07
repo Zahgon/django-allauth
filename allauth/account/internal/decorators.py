@@ -10,7 +10,7 @@ from allauth.account.utils import get_login_redirect_url
 
 
 def _dummy_login_not_required(view_func):
-    return view_func
+    pass
 
 
 login_not_required = getattr(
@@ -24,13 +24,7 @@ def login_stage_required(stage: str, redirect_urlname: str):
         @login_not_required
         @wraps(view_func)
         def _wrapper_view(request, *args, **kwargs):
-            if request.user.is_authenticated:
-                return HttpResponseRedirect(get_login_redirect_url(request))
-            login_stage = LoginStageController.enter(request, stage)
-            if not login_stage:
-                return HttpResponseRedirect(reverse(redirect_urlname))
-            request._login_stage = login_stage
-            return view_func(request, *args, **kwargs)
+            pass
 
         return _wrapper_view
 

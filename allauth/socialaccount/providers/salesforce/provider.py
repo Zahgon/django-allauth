@@ -7,10 +7,10 @@ from allauth.socialaccount.providers.salesforce.views import SalesforceOAuth2Ada
 
 class SalesforceAccount(ProviderAccount):
     def get_profile_url(self):
-        return self.account.extra_data.get("link")
+        pass
 
     def get_avatar_url(self):
-        return self.account.extra_data.get("picture")
+        pass
 
 
 class SalesforceProvider(OAuth2Provider):

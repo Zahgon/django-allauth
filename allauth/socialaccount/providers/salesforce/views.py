@@ -11,19 +11,19 @@ class SalesforceOAuth2Adapter(OAuth2Adapter):
 
     @property
     def base_url(self):
-        return self.get_provider().app.key
+        pass
 
     @property
     def authorize_url(self):
-        return f"{self.base_url}/services/oauth2/authorize"
+        pass
 
     @property
     def access_token_url(self):
-        return f"{self.base_url}/services/oauth2/token"
+        pass
 
     @property
     def userinfo_url(self):
-        return f"{self.base_url}/services/oauth2/userinfo"
+        pass
 
     def complete_login(self, request, app, token, **kwargs):
         with get_adapter().get_requests_session() as sess:

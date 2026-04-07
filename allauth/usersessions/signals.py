@@ -10,12 +10,8 @@ session_client_changed = Signal()
 
 
 def on_user_logged_in(sender, **kwargs):
-    request = kwargs["request"]
-    UserSession.objects.purge_and_list(request.user)
-    UserSession.objects.create_from_request(request)
+    pass
 
 
 def on_password_changed(sender, **kwargs):
-    if not app_settings.LOGOUT_ON_PASSWORD_CHANGE:
-        request = kwargs["request"]
-        UserSession.objects.create_from_request(request)
+    pass

@@ -5,16 +5,10 @@ from allauth.socialaccount.providers.strava.views import StravaOAuth2Adapter
 
 class StravaAccount(ProviderAccount):
     def get_profile_url(self):
-        id = self.account.extra_data.get("id")
-        if id:
-            return f"https://www.strava.com/athletes/{id}"
-        return None
+        pass
 
     def get_avatar_url(self):
-        avatar = self.account.extra_data.get("profile")
-        if avatar and avatar != "avatar/athlete/large.png":
-            return avatar
-        return None
+        pass
 
 
 class StravaProvider(OAuth2Provider):

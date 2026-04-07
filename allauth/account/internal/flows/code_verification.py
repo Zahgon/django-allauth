@@ -22,18 +22,11 @@ class AbstractCodeVerificationProcess(abc.ABC):
 
     @property
     def user(self):
-        if self._user:
-            return self._user
-        user_id = self.state.get("user_id")
-        if not user_id:
-            return None
-        user_id = str_to_user_id(user_id)
-        self._user = get_user_model().objects.filter(pk=user_id).first()
-        return self._user
+        pass
 
     @property
     def code(self):
-        return self.state.get("code", "")
+        pass
 
     @classmethod
     def initial_state(cls, user, email: str | None = None, phone: str | None = None):
@@ -78,10 +71,10 @@ class AbstractCodeVerificationProcess(abc.ABC):
     def abort(self): ...  # noqa: E704
 
     def is_resend_quota_reached(self, quota: int) -> bool:
-        return self.state["resend_count"] >= quota
+        pass
 
     def is_change_quota_reached(self, quota: int) -> bool:
-        return self.state["change_count"] >= quota
+        pass
 
     def record_change(
         self, *, email: str | None = None, phone: str | None = None
@@ -97,8 +90,8 @@ class AbstractCodeVerificationProcess(abc.ABC):
 
     @property
     def can_resend(self) -> bool:
-        return False
+        pass
 
     @property
     def can_change(self) -> bool:
-        return False
+        pass

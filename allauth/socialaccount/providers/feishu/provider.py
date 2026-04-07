@@ -5,7 +5,7 @@ from allauth.socialaccount.providers.oauth2.provider import OAuth2Provider
 
 class FeishuAccount(ProviderAccount):
     def get_avatar_url(self):
-        return self.account.extra_data.get("avatar_big")
+        pass
 
 
 class FeishuProvider(OAuth2Provider):

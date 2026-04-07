@@ -11,7 +11,7 @@ from .constants import PROVIDER_ID, USE_API_V2
 
 class PatreonAccount(ProviderAccount):
     def get_avatar_url(self):
-        return self.account.extra_data.get("attributes").get("thumb_url")
+        pass
 
     def to_str(self):
         email = self.account.extra_data.get("attributes", {}).get("email")

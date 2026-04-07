@@ -64,10 +64,7 @@ class RecoveryCodes:
         return bool(used_mask & (1 << i))
 
     def _mark_code_used(self, i: int) -> None:
-        used_mask = self.instance.data["used_mask"]
-        used_mask |= 1 << i
-        self.instance.data["used_mask"] = used_mask
-        self.instance.save()
+        pass
 
     def get_unused_codes(self) -> list[str]:
         migrated_codes = self._get_migrated_codes()
@@ -82,30 +79,7 @@ class RecoveryCodes:
         return ret
 
     def _validate_migrated_code(self, code: str) -> bool | None:
-        migrated_codes = self._get_migrated_codes()
-        if migrated_codes is None:
-            return None
-        try:
-            idx = migrated_codes.index(code)
-        except ValueError:
-            return False
-        else:
-            migrated_codes = self.instance.data["migrated_codes"]
-            assert isinstance(migrated_codes, list)  # nosec
-            migrated_codes.pop(idx)
-            self.instance.data["migrated_codes"] = migrated_codes
-            self.instance.save()
-            return True
+        pass
 
     def validate_code(self, code: str) -> bool:
-        ret = self._validate_migrated_code(code)
-        if ret is not None:
-            return ret
-
-        for i, c in enumerate(self.generate_codes()):
-            if self._is_code_used(i):
-                continue
-            if code == c:
-                self._mark_code_used(i)
-                return True
-        return False
+        pass

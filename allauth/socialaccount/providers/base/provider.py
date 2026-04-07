@@ -83,7 +83,7 @@ class Provider:
         """
         Some providers may require extra scripts (e.g. a Facebook connect)
         """
-        return ""
+        pass
 
     def wrap_account(self, social_account):
         return self.account_class(social_account)
@@ -265,9 +265,7 @@ class Provider:
 
     @property
     def sub_id(self) -> str:
-        return (
-            (self.app.provider_id or self.app.provider) if self.uses_apps else self.id
-        )
+        pass
 
     def serialize(self) -> dict[str, Any]:
         ret = {"id": self.id}
@@ -297,10 +295,10 @@ class ProviderAccount:
         self.account = social_account
 
     def get_profile_url(self) -> str | None:
-        return None
+        pass
 
     def get_avatar_url(self) -> str | None:
-        return None
+        pass
 
     def get_brand(self) -> dict:
         """

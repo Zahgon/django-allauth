@@ -21,4 +21,4 @@ def user_display_tag(user):
         {% endblocktrans %}
 
     """
-    return user_display(user)
+    pass

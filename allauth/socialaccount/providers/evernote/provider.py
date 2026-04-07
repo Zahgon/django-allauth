@@ -5,10 +5,10 @@ from allauth.socialaccount.providers.oauth.provider import OAuthProvider
 
 class EvernoteAccount(ProviderAccount):
     def get_profile_url(self):
-        return None
+        pass
 
     def get_avatar_url(self):
-        return None
+        pass
 
 
 class EvernoteProvider(OAuthProvider):

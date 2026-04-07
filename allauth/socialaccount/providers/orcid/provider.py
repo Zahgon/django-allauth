@@ -9,7 +9,7 @@ class Scope:
 
 class OrcidAccount(ProviderAccount):
     def get_profile_url(self):
-        return extract_from_dict(self.account.extra_data, ["orcid-identifier", "uri"])
+        pass
 
 
 class OrcidProvider(OAuth2Provider):

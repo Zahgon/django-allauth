@@ -13,58 +13,47 @@ class AppSettings:
 
     @property
     def ADAPTER(self) -> str:
-        return self._setting(
-            "ADAPTER",
-            "allauth.idp.oidc.adapter.DefaultOIDCAdapter",
-        )
+        pass
 
     @property
     def ID_TOKEN_EXPIRES_IN(self) -> int:
-        return 5 * 60
+        pass
 
     @property
     def PRIVATE_KEY(self) -> str:
-        return self._setting("PRIVATE_KEY", "")
+        pass
 
     @property
     def ACCESS_TOKEN_EXPIRES_IN(self) -> int:
-        return self._setting("ACCESS_TOKEN_EXPIRES_IN", 3600)
+        pass
 
     @property
     def ACCESS_TOKEN_FORMAT(self) -> str:
-        return self._setting("ACCESS_TOKEN_FORMAT", "opaque")
+        pass
 
     @property
     def AUTHORIZATION_CODE_EXPIRES_IN(self) -> int:
-        return self._setting("AUTHORIZATION_CODE_EXPIRES_IN", 60)
+        pass
 
     @property
     def ROTATE_REFRESH_TOKEN(self) -> bool:
-        return self._setting("ROTATE_REFRESH_TOKEN", True)
+        pass
 
     @property
     def DEVICE_CODE_EXPIRES_IN(self) -> int:
-        return self._setting("DEVICE_CODE_EXPIRES_IN", 300)
+        pass
 
     @property
     def DEVICE_CODE_INTERVAL(self) -> int:
-        return self._setting("DEVICE_CODE_INTERVAL", 5)
+        pass
 
     @property
     def USER_CODE_FORMAT(self) -> UserCodeFormat:
-        return self._setting("USER_CODE_FORMAT", allauth_settings.USER_CODE_FORMAT)
+        pass
 
     @property
     def RATE_LIMITS(self) -> dict:
-        rls = self._setting("RATE_LIMITS", {})
-        if rls is False:
-            return {}
-        ret = {
-            # OIDC device user code checks
-            "device_user_code": "5/m/ip"
-        }
-        ret.update(rls)
-        return ret
+        pass
 
     @property
     def RP_INITIATED_LOGOUT_ASKS_FOR_OP_LOGOUT(self) -> bool:
@@ -77,7 +66,7 @@ class AppSettings:
 
         This setting controls whether the OP always asks.
         """
-        return self._setting("RP_INITIATED_LOGOUT_ASKS_FOR_OP_LOGOUT", True)
+        pass
 
     @property
     def USERINFO_ENDPOINT(self) -> str | None:
@@ -86,7 +75,7 @@ class AppSettings:
         returned in the ".well-known/openid-configuration" to a custom URL.
         Setting this disables the built-in userinfo endpoint.
         """
-        return self._setting("USERINFO_ENDPOINT", None)
+        pass
 
 
 _app_settings = AppSettings("IDP_OIDC_")

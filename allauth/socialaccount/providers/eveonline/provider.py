@@ -6,14 +6,10 @@ from allauth.socialaccount.providers.oauth2.provider import OAuth2Provider
 
 class EveOnlineAccount(ProviderAccount):
     def get_profile_url(self):
-        return "https://gate.eveonline.com/Profile/{char_name}".format(
-            char_name=self.account.extra_data.get("CharacterName")
-        )
+        pass
 
     def get_avatar_url(self):
-        return ("https://image.eveonline.com/Character/{char_id}_128.jpg").format(
-            char_id=self.account.extra_data.get("CharacterID", 1)
-        )
+        pass
 
     def to_str(self):
         dflt = super().to_str()

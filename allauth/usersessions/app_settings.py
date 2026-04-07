@@ -9,9 +9,7 @@ class AppSettings:
 
     @property
     def ADAPTER(self) -> str:
-        return self._setting(
-            "ADAPTER", "allauth.usersessions.adapter.DefaultUserSessionsAdapter"
-        )
+        pass
 
     @property
     def TRACK_ACTIVITY(self) -> bool:
@@ -19,7 +17,7 @@ class AppSettings:
         enabled, the last seen IP address and last seen timestamp will be kept
         track of.
         """
-        return self._setting("TRACK_ACTIVITY", False)
+        pass
 
 
 _app_settings = AppSettings("USERSESSIONS_")

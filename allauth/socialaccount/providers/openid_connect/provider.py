@@ -42,14 +42,10 @@ class OpenIDConnectProvider(OAuth2Provider):
 
     @property
     def server_url(self):
-        url = self.app.settings["server_url"]
-        return self.wk_server_url(url)
+        pass
 
     def wk_server_url(self, url):
-        well_known_uri = "/.well-known/openid-configuration"
-        if "/.well-known/" not in url:
-            url += well_known_uri
-        return url
+        pass
 
     def get_login_url(self, request, **kwargs):
         url = reverse(
@@ -67,7 +63,7 @@ class OpenIDConnectProvider(OAuth2Provider):
 
     @property
     def token_auth_method(self):
-        return self.app.settings.get("token_auth_method")
+        pass
 
     def get_default_scope(self):
         return ["openid", "profile", "email"]

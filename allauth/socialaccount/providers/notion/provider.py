@@ -12,13 +12,13 @@ class NotionAccount(ProviderAccount):
         return self.get_user()["name"]
 
     def get_avatar_url(self):
-        return self.get_user()["avatar_url"]
+        pass
 
     def get_workspace_name(self):
         return self.account.extra_data["workspace_name"]
 
     def get_workspace_icon(self):
-        return self.account.extra_data["workspace_icon"]
+        pass
 
     def to_str(self):
         name = self.get_name()

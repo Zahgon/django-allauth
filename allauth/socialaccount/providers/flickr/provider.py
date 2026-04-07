@@ -5,10 +5,10 @@ from allauth.socialaccount.providers.oauth.provider import OAuthProvider
 
 class FlickrAccount(ProviderAccount):
     def get_profile_url(self):
-        return self.account.extra_data.get("person").get("profileurl").get("_content")
+        pass
 
     def get_avatar_url(self):
-        return self.account.extra_data.get("picture-url")
+        pass
 
     def to_str(self):
         username = (

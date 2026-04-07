@@ -169,17 +169,7 @@ class SignupView(
         return ret
 
     def get_initial(self) -> dict:
-        initial = super().get_initial()
-        email = self.request.GET.get("email")
-        if email:
-            try:
-                validate_email(email)
-            except ValidationError:
-                return initial
-            initial["email"] = email
-            if "email2" in app_settings.SIGNUP_FIELDS:
-                initial["email2"] = email
-        return initial
+        pass
 
 
 signup = SignupView.as_view()
@@ -258,9 +248,7 @@ class ConfirmEmailView(NextRedirectMixin, LogoutFunctionalityMixin, TemplateView
         return emailconfirmation
 
     def get_queryset(self):
-        qs = EmailConfirmation.objects.all_valid()
-        qs = qs.select_related("email_address__user")
-        return qs
+        pass
 
     def get_ajax_data(self) -> dict:
         ret: dict = {
@@ -874,15 +862,7 @@ class ConfirmEmailVerificationCodeView(NextRedirectMixin, FormView):
 
     @cached_property
     def _action(self):
-        action = self.request.POST.get("action")
-        valid_actions = ["verify"]
-        if self._process.can_change:
-            valid_actions.append("change")
-        if self._process.can_resend:
-            valid_actions.append("resend")
-        if action not in valid_actions:
-            action = "verify"
-        return action
+        pass
 
     def get_form_class(self):
         if self._action == "change":
@@ -988,10 +968,7 @@ class ConfirmEmailVerificationCodeView(NextRedirectMixin, FormView):
 
 @method_decorator(login_not_required, name="dispatch")
 def email_verification_sent(request) -> HttpResponseBase:
-    if app_settings.EMAIL_VERIFICATION_BY_CODE_ENABLED:
-        return ConfirmEmailVerificationCodeView.as_view()(request)
-    else:
-        return EmailVerificationSentView.as_view()(request)
+    pass
 
 
 class BaseReauthenticateView(NextRedirectMixin, FormView):
@@ -1139,13 +1116,7 @@ class ConfirmLoginCodeView(NextRedirectMixin, FormView):
 
     @cached_property
     def _action(self) -> str:
-        action = self.request.POST.get("action")
-        valid_actions = ["verify"]
-        if self._process.can_resend:
-            valid_actions.append("resend")
-        if action not in valid_actions:
-            action = "verify"
-        return action
+        pass
 
     def get_form_class(self):
         if self._action == "resend":
@@ -1228,15 +1199,7 @@ class _BaseVerifyPhoneView(NextRedirectMixin, FormView):
 
     @cached_property
     def _action(self):
-        action = self.request.POST.get("action")
-        valid_actions = ["verify"]
-        if self.process.can_change:
-            valid_actions.append("change")
-        if self.process.can_resend:
-            valid_actions.append("resend")
-        if action not in valid_actions:
-            action = "verify"
-        return action
+        pass
 
     def get_form_class(self):
         if self._action == "change":
@@ -1384,9 +1347,7 @@ class _VerifyPhoneChangeView(_BaseVerifyPhoneView):
 
 @method_decorator(login_not_required, name="dispatch")
 def verify_phone(request):
-    if request.user.is_authenticated:
-        return _VerifyPhoneChangeView.as_view()(request)
-    return _VerifyPhoneSignupView.as_view()(request)
+    pass
 
 
 @method_decorator(login_required, name="dispatch")

@@ -5,10 +5,10 @@ from allauth.socialaccount.providers.oauth.provider import OAuthProvider
 
 class DiscogsAccount(ProviderAccount):
     def get_username(self):
-        return self.account.extra_data.get("username")
+        pass
 
     def get_profile_url(self):
-        return self.account.extra_data.get("resource_url")
+        pass
 
 
 class DiscogsProvider(OAuthProvider):

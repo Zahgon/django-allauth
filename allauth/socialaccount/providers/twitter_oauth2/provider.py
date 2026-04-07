@@ -5,16 +5,13 @@ from allauth.socialaccount.providers.twitter_oauth2.views import TwitterOAuth2Ad
 
 class TwitterOAuth2Account(ProviderAccount):
     def get_username(self):
-        return self.account.extra_data.get("username")
+        pass
 
     def get_profile_url(self):
-        username = self.get_username()
-        if username:
-            return f"https://x.com/{username}"
-        return None
+        pass
 
     def get_avatar_url(self):
-        return self.account.extra_data.get("profile_image_url")
+        pass
 
 
 class TwitterOAuth2Provider(OAuth2Provider):

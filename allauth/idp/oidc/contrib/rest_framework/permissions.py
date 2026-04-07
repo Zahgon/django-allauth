@@ -8,13 +8,7 @@ class TokenPermission(BasePermission):
     scope = None
 
     def has_permission(self, request, view) -> bool:
-        access_token = request.auth
-        if (
-            not isinstance(access_token, Token)
-            or access_token.type != Token.Type.ACCESS_TOKEN
-        ):
-            return False
-        return is_scope_granted(self.scope, access_token, request.method)
+        pass
 
     @classmethod
     def has_scope(cls, scope: str | list | dict):

@@ -17,12 +17,7 @@ def lookup_kid_pem_x509_certificate(keys_data, kid):
 
         {"<kid>": "-----BEGIN CERTIFICATE-----\nCERTIFICATE"}
     """
-    key = keys_data.get(kid)
-    if key:
-        public_key = load_pem_x509_certificate(
-            key.encode("utf8"), default_backend()
-        ).public_key()
-        return public_key
+    pass
 
 
 def lookup_kid_jwk(keys_data, kid):
@@ -41,10 +36,7 @@ def lookup_kid_jwk(keys_data, kid):
             }]
         }
     """
-    for d in keys_data["keys"]:
-        if d["kid"] == kid:
-            public_key = jwt.algorithms.RSAAlgorithm.from_jwk(json.dumps(d))
-            return public_key
+    pass
 
 
 def fetch_key(credential, keys_url, lookup):

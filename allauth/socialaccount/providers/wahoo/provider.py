@@ -7,7 +7,7 @@ from allauth.socialaccount.providers.wahoo.views import WahooOAuth2Adapter
 
 class WahooAccount(ProviderAccount):
     def get_profile_url(self):
-        return "https://api.wahooligan.com/v1/user"
+        pass
 
 
 class WahooProvider(OAuth2Provider):

@@ -64,8 +64,7 @@ def disconnect(request, account) -> None:
 
 
 def resume_connect(request, serialized_state):
-    sociallogin = SocialLogin.deserialize(serialized_state)
-    return connect(request, sociallogin)
+    pass
 
 
 def connect(request, sociallogin):

@@ -138,7 +138,7 @@ class SLSView(SAMLViewMixin, View):
         account_adapter = get_account_adapter(request)
 
         def force_logout():
-            account_adapter.logout(request)
+            pass
 
         redirect_to = None
         error_reason = None

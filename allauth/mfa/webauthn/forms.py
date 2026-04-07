@@ -31,12 +31,7 @@ class _BaseAddWebAuthnForm(forms.Form):
         want to reject a valid credential because of a missing name -- it might
         be resident already. So, gracefully plug in a name.
         """
-        name = self.cleaned_data["name"]
-        if not name:
-            name = get_adapter().generate_authenticator_name(
-                self.user, Authenticator.Type.WEBAUTHN
-            )
-        return name
+        pass
 
     def clean(self):
         cleaned_data = super().clean()
@@ -75,18 +70,7 @@ class AuthenticateWebAuthnForm(forms.Form):
         super().__init__(*args, **kwargs)
 
     def clean_credential(self) -> Authenticator:
-        credential = self.cleaned_data["credential"]
-        # Explicitly parse JSON payload -- otherwise, authenticate_complete()
-        # crashes with some random TypeError and we don't want to do
-        # Pokemon-style exception handling.
-        auth.parse_authentication_response(credential)
-        user = self.user
-        if user is None:
-            user = auth.extract_user_from_response(credential)
-        clear_rl = check_rate_limit(user)
-        authenticator = auth.complete_authentication(user, credential)
-        clear_rl()
-        return authenticator
+        pass
 
     def save(self) -> None:
         authenticator = self.cleaned_data["credential"]

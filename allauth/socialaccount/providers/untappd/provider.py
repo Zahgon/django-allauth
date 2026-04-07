@@ -8,10 +8,10 @@ from allauth.socialaccount.providers.untappd.views import UntappdOAuth2Adapter
 
 class UntappdAccount(ProviderAccount):
     def get_profile_url(self):
-        return self.account.extra_data.get("untappd_url")
+        pass
 
     def get_avatar_url(self):
-        return self.account.extra_data.get("user_avatar")
+        pass
 
     def get_user_data(self):
         return self.account.extra_data.get("response", {}).get("user", {})

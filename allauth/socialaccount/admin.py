@@ -40,9 +40,7 @@ class SocialAccountAdmin(admin.ModelAdmin):
     list_filter = ("provider",)
 
     def get_search_fields(self, request):
-        search_fields = super().get_search_fields(request)
-        user_search_fields = get_adapter().get_user_search_fields()
-        return search_fields + list(map(lambda a: f"user__{a}", user_search_fields))
+        pass
 
 
 class SocialTokenAdmin(admin.ModelAdmin):
@@ -54,11 +52,7 @@ class SocialTokenAdmin(admin.ModelAdmin):
     list_filter = ("app", "app__provider", "expires_at")
 
     def truncated_token(self, token):
-        max_chars = 40
-        ret = token.token
-        if len(ret) > max_chars:
-            ret = f"{ret[0:max_chars]}...(truncated)"
-        return ret
+        pass
 
     truncated_token.short_description = "Token"  # type: ignore[attr-defined]
 

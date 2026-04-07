@@ -5,10 +5,10 @@ from allauth.socialaccount.providers.soundcloud.views import SoundCloudOAuth2Ada
 
 class SoundCloudAccount(ProviderAccount):
     def get_profile_url(self):
-        return self.account.extra_data.get("permalink_url")
+        pass
 
     def get_avatar_url(self):
-        return self.account.extra_data.get("avatar_url")
+        pass
 
 
 class SoundCloudProvider(OAuth2Provider):

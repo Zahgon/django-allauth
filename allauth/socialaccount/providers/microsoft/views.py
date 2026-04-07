@@ -31,28 +31,19 @@ class MicrosoftGraphOAuth2Adapter(OAuth2Adapter):
     provider_id = "microsoft"
 
     def _build_tenant_url(self, path):
-        settings = app_settings.PROVIDERS.get(self.provider_id, {})
-        # Lower case "tenant" for backwards compatibility
-        tenant = settings.get("TENANT", settings.get("tenant", "common"))
-        # Prefer app based tenant setting.
-        app = get_adapter().get_app(context.request, provider=self.provider_id)
-        tenant = app.settings.get("tenant", tenant)
-        login_url = app.settings.get("login_url", "https://login.microsoftonline.com")
-        return f"{login_url}/{tenant}{path}"
+        pass
 
     @property
     def access_token_url(self):
-        return self._build_tenant_url("/oauth2/v2.0/token")
+        pass
 
     @property
     def authorize_url(self):
-        return self._build_tenant_url("/oauth2/v2.0/authorize")
+        pass
 
     @property
     def profile_url(self):
-        app = get_adapter().get_app(context.request, provider=self.provider_id)
-        graph_url = app.settings.get("graph_url", "https://graph.microsoft.com")
-        return f"{graph_url}/v1.0/me"
+        pass
 
     user_properties = (
         "businessPhones",

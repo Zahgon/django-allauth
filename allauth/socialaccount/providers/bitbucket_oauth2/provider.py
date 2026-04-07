@@ -7,10 +7,10 @@ from allauth.socialaccount.providers.oauth2.provider import OAuth2Provider
 
 class BitbucketOAuth2Account(ProviderAccount):
     def get_profile_url(self):
-        return self.account.extra_data.get("links", {}).get("html", {}).get("href")
+        pass
 
     def get_avatar_url(self):
-        return self.account.extra_data.get("links", {}).get("avatar", {}).get("href")
+        pass
 
 
 class BitbucketOAuth2Provider(OAuth2Provider):
